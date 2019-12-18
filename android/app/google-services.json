@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "346184069412",
+    "firebase_url": "https://appskate-249e5.firebaseio.com",
+    "project_id": "appskate-249e5",
+    "storage_bucket": "appskate-249e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346184069412:android:86cc9de347c70047f383b1",
+        "android_client_info": {
+          "package_name": "com.appskate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "346184069412-h22f0qchgrjq4hddm868ki2l1lg2re5r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvgS6To1mU_vXjhF_h6PeO3559cl_zBMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "346184069412-h22f0qchgrjq4hddm868ki2l1lg2re5r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
