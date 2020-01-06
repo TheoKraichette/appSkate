@@ -14,9 +14,9 @@ export default class HomeScreen extends React.Component {
     };
 
     componentDidMount() {
-        const { email, displayName, displayNickName } = firebase.auth().currentUser;
+        const { email, displayName } = firebase.auth().currentUser;
 
-        this.setState({ email, displayName, displayNickName });
+        this.setState({ email, displayName, });
     }
 
     signOutUser = () => {

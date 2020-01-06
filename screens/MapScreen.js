@@ -1,17 +1,55 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Platform, Alert } from "react-native";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import Geolocation from '@react-native-community/geolocation';
+import { request, PERMISSIONS} from 'react-native-permissions';
 
-export default class HomeScreen extends React.Component {
+export default class MapScreen extends React.Component {
     static navigationOptions = {
         header: null
       }
+    componentDidMount(){
+        this.requestLocationPermission();
+    }
+
+    requestLocationPermission = async () => {
+        if(Platform.OS === "ios") {
+            var response = await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
+        if(response === 'granted'){
+            this.locateCurrentPosition();
+        }
+        } else {
+            var response = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+            if(response === 'granted'){
+                this.locateCurrentPosition();
+            }
+        }
+    }
+
+    locateCurrentPosition = () => {
+        Geolocation.getCurrentPosition(
+            position => {
+            JSON.stringify(position);
+                let initialPosition = {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    latitudeDelta: 0.0022,
+                    longitudeDelta: 0.0121
+                }
+
+                this.setState({initialPosition});
+            },
+        )
+    }
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text style={styles.greeting}>Hi Map View </Text>
-
-            </View>
+            <MapView
+            style={styles.map}
+            provider={PROVIDER_GOOGLE}
+            ref={map => this._map = map}
+            showsUserLocation={true}
+            initialRegion={this.state.initialPosition}/>
         );
     }
 }
@@ -22,31 +60,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
  
     },
-    greeting: {
-        marginTop: 32,
-        fontSize: 18,
-        fontWeight: "400",
-        textAlign: "center"
-    },
-    errorMessage: {
-        height: 72,
-        alignItems: "center",
-        justifyContent: "center",
-        marginHorizontal: 30
-    },
-    error: {
-        color: "#E9446A",
-        fontSize: 13,
-        fontWeight: "600",
-        textAlign: "center"
-    },
-    button: {
-        marginTop: 30,
-        marginHorizontal: 30,
-        backgroundColor: "#8F0F0F",
-        borderRadius: 4,
-        height: 52,
-        alignItems: "center",
-        justifyContent: "center"
+    map: {
+        height: '100%'
     }
+
 });

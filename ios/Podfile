@@ -34,6 +34,8 @@ target 'appSkate' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
+
   target 'appSkateTests' do
     inherit! :search_paths
     # Pods for testing
@@ -49,5 +51,10 @@ target 'appSkate-tvOS' do
     inherit! :search_paths
     # Pods for testing
   end
-
+  
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+  pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
+  
 end
