@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from "react-native";
 import * as firebase from "firebase";
 
 export default class LoginScreen extends React.Component {
@@ -26,12 +26,14 @@ export default class LoginScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.greeting}>{`Hello again.\nWelcome back.`}</Text>
-
+                <Text style={styles.greeting}>{`Welcome on AppSkate !`}</Text>
                 <View style={styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
                 </View>
-
+                <Image
+                    source={require('../assets/loginLogo.png')}
+                    style={{marginLeft: 100}}>
+                </Image>
                 <View style={styles.form}>
                     <View>
                         <Text style={styles.inputTitle}>Email Address</Text>
@@ -64,9 +66,11 @@ export default class LoginScreen extends React.Component {
                     onPress={() => this.props.navigation.navigate("Register")}
                 >
                     <Text style={{ color: "#414959", fontSize: 13 }}>
-                        New to SocialApp? <Text style={{ fontWeight: "500", color: "#8F0F0F" }}>Sign Up</Text>
+                        New to AppSkate? <Text style={{ fontWeight: "500", color: "#8F0F0F" }}>Sign Up</Text>
                     </Text>
                 </TouchableOpacity>
+                
+
             </View>
         );
     }
