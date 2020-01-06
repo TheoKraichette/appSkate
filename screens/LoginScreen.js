@@ -32,7 +32,7 @@ export default class LoginScreen extends React.Component {
                 </View>
                 <Image
                     source={require('../assets/loginLogo.png')}
-                    style={{marginLeft: 100}}>
+                    style={{marginLeft: 115}}>
                 </Image>
                 <View style={styles.form}>
                     <View>

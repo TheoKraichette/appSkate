@@ -10,7 +10,6 @@ export default class RegisterScreen extends React.Component {
       
     state = {
         name: "",
-        nickName: "",
         email: "",
         password: "",
         errorMessage: null
@@ -39,23 +38,14 @@ export default class RegisterScreen extends React.Component {
                 </View>
 
                 <View style={styles.form}>
-                    <View>
-                        <Text style={styles.inputTitle}>Full Name</Text>
+                    
+                    <View style={{ marginTop: 32 }}>
+                        <Text style={styles.inputTitle}>Nick Name</Text>
                         <TextInput
                             style={styles.input}
                             autoCapitalize="none"
                             onChangeText={name => this.setState({ name })}
                             value={this.state.name}
-                        ></TextInput>
-                    </View>
-                    
-                    <View style={{ marginTop: 32 }}>
-                        <Text style={styles.inputTitle}>NickName</Text>
-                        <TextInput
-                            style={styles.input}
-                            autoCapitalize="none"
-                            onChangeText={nickName => this.setState({ nickName })}
-                            value={this.state.nickName}
                         ></TextInput>
                     </View>
 

@@ -1,43 +1,20 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import * as firebase from "firebase";
+import { View, Text, StyleSheet } from "react-native";
 
 export default class HomeScreen extends React.Component {
     static navigationOptions = {
         header: null
       }
-      
-    state = {
-        email: "",
-        displayName: "",
-        displayNickName: ""
-    };
-
-    componentDidMount() {
-        const { email, displayName, displayNickName } = firebase.auth().currentUser;
-
-        this.setState({ email, displayName, displayNickName });
-    }
-
-    signOutUser = () => {
-        firebase.auth().signOut();
-    };
 
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.greeting}>Hi {this.state.displayName}!</Text>
-
-                <TouchableOpacity style={styles.button} onPress={this.signOutUser}>
-                    <Text style={{ color: "#FFF", fontWeight: "500" }}>Logout</Text>
-                </TouchableOpacity>
+                <Text style={styles.greeting}>Hi Map View </Text>
 
             </View>
         );
     }
 }
-
-
 
 const styles = StyleSheet.create({
     container: {
