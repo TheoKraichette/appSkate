@@ -6,7 +6,7 @@ export default class LoginScreen extends React.Component {
 
     static navigationOptions = {
         header: null
-      }
+    }
 
     state = {
         email: "",
@@ -26,7 +26,7 @@ export default class LoginScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.greeting}>{`Welcome on AppSkate !`}</Text>
+                <Text style={styles.greeting}>{`Welcome on We Skate Go !`}</Text>
                 <View style={styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
                 </View>

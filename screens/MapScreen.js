@@ -1,22 +1,21 @@
 import React from "react";
-import { View, Text, StyleSheet, Platform, Alert } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import Geolocation from '@react-native-community/geolocation';
 import { request, PERMISSIONS} from 'react-native-permissions';
+import mapStyle from '../mapStyle';
 
 export default class MapScreen extends React.Component {
-    static navigationOptions = {
-        header: null
-      }
+
     componentDidMount(){
         this.requestLocationPermission();
     }
     constructor(props){
         super(props);
-     
+
         this.state = {
         }
-     }
+    }
 
     requestLocationPermission = async () => {
         if(Platform.OS === "ios") {
@@ -55,7 +54,8 @@ export default class MapScreen extends React.Component {
             provider={PROVIDER_GOOGLE}
             ref={map => this._map = map}
             showsUserLocation={true}
-            initialRegion={this.state.initialPosition}/>
+            initialRegion={this.state.initialPosition}
+            customMapStyle={mapStyle}/>
         );
     }
 }
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
  
     },
     map: {
-        height: '100%'
+        height: '100%',
     }
 
 });
