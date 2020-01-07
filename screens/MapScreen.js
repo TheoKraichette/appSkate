@@ -11,6 +11,12 @@ export default class MapScreen extends React.Component {
     componentDidMount(){
         this.requestLocationPermission();
     }
+    constructor(props){
+        super(props);
+     
+        this.state = {
+        }
+     }
 
     requestLocationPermission = async () => {
         if(Platform.OS === "ios") {
