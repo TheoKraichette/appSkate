@@ -1,6 +1,11 @@
 {
   "name": "appSkate",
   "version": "0.0.1",
+  "rnpm": {
+    "assets": [
+      "./assets/fonts"
+    ]
+  },
   "private": true,
   "scripts": {
     "android": "react-native run-android",
