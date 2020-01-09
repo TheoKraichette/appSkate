@@ -3,6 +3,7 @@ import React from 'react'
 import { StyleSheet, Image } from 'react-native';
 import HomeScreen from './HomeScreen';
 import MapScreen from './MapScreen';
+import AddSpotScreen from './AddSpotScreen';
 
 export const TabScreen = createBottomTabNavigator({
     Home: {
@@ -16,16 +17,27 @@ export const TabScreen = createBottomTabNavigator({
         }
     },
     Map: {
-        screen: MapScreen, 
-        navigationOptions: {
-            tabBarIcon: () => { // On définit le rendu de nos icônes par les images récemment ajoutés au projet
-                return <Image
-                  source={require('../assets/skatee.png')}
-                  style={styles.icon}/> // On applique un style pour les redimensionner comme il faut
-                }
-            }
+      screen: MapScreen, 
+      navigationOptions: {
+          tabBarIcon: () => { // On définit le rendu de nos icônes par les images récemment ajoutés au projet
+              return <Image
+                source={require('../assets/skatee.png')}
+                style={styles.icon}/> // On applique un style pour les redimensionner comme il faut
+              }
           }
         },
+    AddSpot: {
+      screen: AddSpotScreen, 
+      navigationOptions: {
+          tabBarIcon: () => { // On définit le rendu de nos icônes par les images récemment ajoutés au projet
+              return <Image
+                source={require('../assets/skatee.png')}
+                style={styles.icon}/> // On applique un style pour les redimensionner comme il faut
+              }
+          }
+        },
+        },
+        
         {
         tabBarOptions: {
             activeBackgroundColor: '#DDDDDD', // Couleur d'arrière-plan de l'onglet sélectionné
