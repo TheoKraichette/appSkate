@@ -1,9 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import * as firebase from "firebase";
 
-export default class HomeScreen extends React.Component {
 
+export default class HomeScreen extends React.Component {
+    static navigationOptions = {
+        header: null
+    }
+    
     state = {
         email: "",
         displayName: "",
@@ -14,7 +19,7 @@ export default class HomeScreen extends React.Component {
         const { email, displayName } = firebase.auth().currentUser;
 
         this.setState({ email, displayName, });
-    }
+    }    
 
     signOutUser = () => {
         firebase.auth().signOut();
@@ -23,30 +28,45 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.greeting}>Hi {this.state.displayName}!</Text>
-
-                <TouchableOpacity style={styles.button} onPress={this.signOutUser}>
-                    <Text style={{ color: "#FFF", fontWeight: "500" }}>Logout</Text>
-                </TouchableOpacity>
-
+                <Container>
+                    <Header>
+                    <Left>
+                        <Button transparent>
+                        <Icon name='arrow-back' />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title>Header</Title>
+                    </Body>
+                    <Right>
+                        <Button transparent>
+                        <Icon name='menu' />
+                        </Button>
+                    </Right>
+                    </Header>
+                </Container>
+                
+                <View style={styles.container}>
+                    <Text style={styles.greeting}>Hi {this.state.displayName}!</Text>
+                </View>
             </View>
-        );
-    }
-}
+    );
+  }
+}                
 
-
+ 
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "center",
- 
+
     },
     greeting: {
-        marginTop: 32,
         fontSize: 18,
         fontWeight: "400",
-        textAlign: "center"
+        textAlign: "center",
+        marginBottom: 50
     },
     errorMessage: {
         height: 72,
@@ -70,3 +90,4 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     }
 });
+

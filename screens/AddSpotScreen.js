@@ -137,6 +137,7 @@ export default class App extends Component {
                 title="PICK THIS LOCATION"
                 disabled={this.state.regionChangeProgress}
                 onPress={this.onLocationSelect}
+                style={{backgroundColor: "#8F0F0F"}}
               >
               </Button>
             </View>

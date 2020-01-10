@@ -1,11 +1,16 @@
 import React from "react";
-import { StyleSheet, Platform } from "react-native";
+import { StyleSheet, Platform, View } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import Geolocation from '@react-native-community/geolocation';
 import { request, PERMISSIONS} from 'react-native-permissions';
 import mapStyle from '../mapStyle';
+import HeaderMap from '../components/HeaderMap';
 
 export default class MapScreen extends React.Component {
+    
+    static navigationOptions = {
+        header: null
+    }
 
     componentDidMount(){
         this.requestLocationPermission();
@@ -13,8 +18,8 @@ export default class MapScreen extends React.Component {
     constructor(props){
         super(props);
 
-        this.state = {
-        }
+
+        this.state = {}
     }
 
     requestLocationPermission = async () => {
@@ -49,6 +54,10 @@ export default class MapScreen extends React.Component {
 
     render() {
         return (
+        
+        <View>
+            <HeaderMap/>
+            
             <MapView
             style={styles.map}
             provider={PROVIDER_GOOGLE}
@@ -56,6 +65,8 @@ export default class MapScreen extends React.Component {
             showsUserLocation={true}
             initialRegion={this.state.initialPosition}
             customMapStyle={mapStyle}/>
+
+        </View>
         );
     }
 }
@@ -64,10 +75,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "center",
- 
+
     },
     map: {
-        height: '100%',
+        height: '90%',
     }
 
 });

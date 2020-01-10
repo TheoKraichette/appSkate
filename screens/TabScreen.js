@@ -6,6 +6,8 @@ import MapScreen from './MapScreen';
 import AddSpotScreen from './AddSpotScreen';
 
 export const TabScreen = createBottomTabNavigator({
+
+  
     Home: {
         screen: HomeScreen, 
         navigationOptions: {
@@ -47,6 +49,7 @@ export const TabScreen = createBottomTabNavigator({
           }
         }
       )
+      
 
     const styles = StyleSheet.create({
         icon: {

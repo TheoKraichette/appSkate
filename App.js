@@ -1,5 +1,4 @@
 import { createAppContainer, createSwitchNavigator} from 'react-navigation'
-import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createStackNavigator } from 'react-navigation-stack'
 import LoadingScreen from './screens/LoadingScreen'
 import LoginScreen from './screens/LoginScreen'
@@ -19,7 +18,13 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-const AppStack = createStackNavigator({ TabScreen });
+const AppStack = createStackNavigator({
+  main: TabScreen
+}, {
+  initialRouteName: 'main',
+  header: null,
+  headerMode: 'none'
+});
 
 const AuthStack = createStackNavigator({
   Login: LoginScreen,
@@ -33,7 +38,7 @@ const switchNav = createSwitchNavigator({
     Auth: AuthStack,
   },
   {
-    initialRouteName: "Loading"
+    initialRouteName: "Loading",
   }
 );
 

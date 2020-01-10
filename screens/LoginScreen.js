@@ -1,19 +1,39 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView, KeyboardAvoidingView, Keyboard, Platform  } from "react-native";
 import * as firebase from "firebase";
 
+
 export default class LoginScreen extends React.Component {
+        
+    state = {
+        email: "",
+        password: "",
+        errorMessage: null,
+        keyboardAvoidingViewKey: 'keyboardAvoidingViewKey'
+    }
 
     static navigationOptions = {
         header: null
     }
 
-    state = {
-        email: "",
-        password: "",
-        errorMessage: null
-    };
 
+
+        
+    componentDidMount() {
+        // using keyboardWillHide is better but it does not work for android
+        this.keyboardHideListener = Keyboard.addListener(Platform.OS === 'android' ? 'keyboardDidHide': 'keyboardWillHide', this.keyboardHideListener.bind(this));
+    }
+    
+    componentWillUnmount() {
+        this.keyboardHideListener.remove()
+    }
+    
+    keyboardHideListener() {
+        this.setState({
+            keyboardAvoidingViewKey:'keyboardAvoidingViewKey' + new Date().getTime()
+        });
+    }
+    
     handleLogin = () => {
         const { email, password } = this.state;
 
@@ -24,68 +44,75 @@ export default class LoginScreen extends React.Component {
     };
 
     render() {
+        let { keyboardAvoidingViewKey } = this.state
+
         return (
-            <View style={styles.container}>
-                <Text style={styles.greeting}>{`Welcome on We Skate Go !`}</Text>
-                <View style={styles.errorMessage}>
-                    {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
-                </View>
-                <Image
-                    source={require('../assets/loginLogo.png')}
-                    style={{marginLeft: 115}}>
-                </Image>
-                <View style={styles.form}>
-                    <View>
-                        <Text style={styles.inputTitle}>Email Address</Text>
-                        <TextInput
-                            style={styles.input}
-                            autoCapitalize="none"
-                            onChangeText={email => this.setState({ email })}
-                            value={this.state.email}
-                        ></TextInput>
+            
+        <ScrollView>
+            <KeyboardAvoidingView behavior={'position'}key={keyboardAvoidingViewKey}>
+                <View>
+                    <Image
+                        source={require('../assets/loginLogo.png')}
+                        style={{marginLeft: 115, marginTop: 20}}>
+                    </Image>
+                    <Text style={styles.greeting}>{`Welcome on We Skate Go !`}</Text>
+
+                    <View style={styles.errorMessage}>
+                        {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
                     </View>
 
-                    <View style={{ marginTop: 32 }}>
-                        <Text style={styles.inputTitle}>Password</Text>
-                        <TextInput
-                            style={styles.input}
-                            secureTextEntry
-                            autoCapitalize="none"
-                            onChangeText={password => this.setState({ password })}
-                            value={this.state.password}
-                        ></TextInput>
-                    </View>
+                    <View style={styles.form}>
+                        <View style={{ marginTop: 16 }}>
+                            <Text style={styles.inputTitle}>Email adress</Text>
+                            <TextInput
+                                style={styles.input}
+                                autoCapitalize="none"
+                                onChangeText={email => this.setState({ email })}
+                                value={this.state.email}>
+                            </TextInput>
+                        </View>
+
+                        <View style={{ marginTop: 32 }}>
+                            <Text style={styles.inputTitle}>Password</Text>
+                            <TextInput
+                                style={styles.input}
+                                secureTextEntry
+                                autoCapitalize="none"
+                                onChangeText={password => this.setState({ password })}
+                                value={this.state.password}>
+                            </TextInput>
+                        </View>
+                    </View>            
+
+                    <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
+                        <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign in</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={{ alignSelf: "center", marginTop: 32 }}
+                        onPress={() => this.props.navigation.navigate("Register")}>
+
+                        <Text style={{ color: "#414959", fontSize: 13 }}>
+                            New to AppSkate? <Text style={{ fontWeight: "500", color: "#8F0F0F" }}>Sign Up</Text>
+                        </Text>
+                    </TouchableOpacity>
                 </View>
+            </KeyboardAvoidingView>
+        </ScrollView>
 
-                <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-                    <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign in</Text>
-                </TouchableOpacity>
 
-                <TouchableOpacity
-                    style={{ alignSelf: "center", marginTop: 32 }}
-                    onPress={() => this.props.navigation.navigate("Register")}
-                >
-                    <Text style={{ color: "#414959", fontSize: 13 }}>
-                        New to AppSkate? <Text style={{ fontWeight: "500", color: "#8F0F0F" }}>Sign Up</Text>
-                    </Text>
-                </TouchableOpacity>
-                
-
-            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        marginTop: 32,
-        
-    },
+
     greeting: {
         marginTop: 32,
         fontSize: 18,
         fontWeight: "400",
         textAlign: "center"
+
     },
     errorMessage: {
         height: 72,
