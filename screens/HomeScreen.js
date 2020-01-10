@@ -3,11 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import * as firebase from "firebase";
 
-
 export default class HomeScreen extends React.Component {
-    static navigationOptions = {
-        header: null
-    }
     
     state = {
         email: "",
@@ -29,23 +25,25 @@ export default class HomeScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <Container>
-                    <Header>
-                    <Left>
-                        <Button transparent>
-                        <Icon name='arrow-back' />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Header</Title>
-                    </Body>
-                    <Right>
-                        <Button transparent>
-                        <Icon name='menu' />
-                        </Button>
-                    </Right>
+                    <Header
+                        androidStatusBarColor="#FFFFFF"
+                        style={{ backgroundColor: 'red' }}>
+                        <Left>
+                            <Button transparent>
+                            <Icon name='arrow-back' />
+                            </Button>
+                        </Left>
+                        <Body>
+                            <Title>Header</Title>
+                        </Body>
+                        <Right>
+                            <Button transparent>
+                            <Icon name='menu' />
+                            </Button>
+                        </Right>
                     </Header>
                 </Container>
-                
+
                 <View style={styles.container}>
                     <Text style={styles.greeting}>Hi {this.state.displayName}!</Text>
                 </View>

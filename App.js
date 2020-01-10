@@ -19,7 +19,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const AppStack = createStackNavigator({
-  main: TabScreen
+  main: TabScreen,
+  
 }, {
   initialRouteName: 'main',
   header: null,

@@ -7,8 +7,6 @@ import mapStyle from '../mapStyle';
 import styles from "../styles";
 
 // Disable yellow box warning messages
-console.disableYellowBox = true;
-
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +24,9 @@ export default class App extends Component {
       regionChangeProgress: false
     };
   }
+  componentDidMount(){
+    this.requestLocationPermission();
+}
 
   requestLocationPermission = async () => {
     if(Platform.OS === "ios") {
@@ -40,7 +41,7 @@ export default class App extends Component {
         }
     }
 }
-  componentWillMount() {
+  locateCurrentPosition = () => {
     Geolocation.getCurrentPosition(
       (position) => {
         const region = {
