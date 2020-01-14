@@ -4,6 +4,7 @@ import LoadingScreen from './screens/LoadingScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import { TabScreen } from './screens/TabScreen'
+import AddSpotScreen from './screens/AddSpotScreen'
 import * as firebase from 'firebase'
 
 var firebaseConfig = {
@@ -20,6 +21,7 @@ firebase.initializeApp(firebaseConfig);
 
 const AppStack = createStackNavigator({
   main: TabScreen,
+  addSpot: AddSpotScreen
   
 }, {
   initialRouteName: 'main',

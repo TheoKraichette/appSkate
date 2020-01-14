@@ -71,6 +71,10 @@ export default class App extends Component {
     this.setState({ isMapReady: true, marginTop: 0 });
   }
 
+  goBack = () => {
+    this.props.navigation.goBack();
+  }
+
   // Fetch location details as a JOSN from google map API
   fetchAddress = () => {
     fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.state.region.latitude + "," + this.state.region.longitude + "&key=" + "AIzaSyD0eoffcsPhgvOLn7RnwBbrK70uufqMSyM")
@@ -135,13 +139,20 @@ export default class App extends Component {
               {!this.state.regionChangeProgress ? this.state.userLocation : "Identifying Location..."}</Text>
             <View style={styles.btnContainer}>
                 <Button
+                title="GO BACK"
+                disabled={this.state.regionChangeProgress}
+                onPress={this.goBack}
+                containerStyle={{backgroundColor: "#"}}
+              >
+              </Button>
+            </View> 
+            <Button
                 title="PICK THIS LOCATION"
                 disabled={this.state.regionChangeProgress}
                 onPress={this.onLocationSelect}
-                style={{backgroundColor: "#8F0F0F"}}
+                containerStyle={{backgroundColor: "#000000"}}
               >
               </Button>
-            </View>
           </View>
         </View>
       );

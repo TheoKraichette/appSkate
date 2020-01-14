@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
-export default class HeaderIconExample extends Component {
+import { withNavigation } from 'react-navigation';
+
+class HeaderIconExample extends Component {
+
+  goToAddSpot = () => {
+    this.props.navigation.push('addSpot')
+  }
+
   render() {
     return (
         <Container>
@@ -14,7 +21,9 @@ export default class HeaderIconExample extends Component {
             <Title>Header</Title>
         </Body>
         <Right>
-            <Button transparent>
+            <Button
+              onPress={this.goToAddSpot}
+              transparent>
             <Icon name='menu' />
             </Button>
         </Right>
@@ -23,3 +32,5 @@ export default class HeaderIconExample extends Component {
     );
   }
 }
+
+export default withNavigation(HeaderIconExample)
