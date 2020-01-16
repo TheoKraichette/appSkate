@@ -7,13 +7,16 @@ class HeaderIconExample extends Component {
   goToAddSpot = () => {
     this.props.navigation.push('addSpot')
   }
-
+  goBack = () => {
+    this.props.navigation.goBack();
+  }
   render() {
     return (
         <Container>
         <Header>
         <Left>
-            <Button transparent>
+            <Button transparent
+            onPress={this.goBack}>
             <Icon name='arrow-back' />
             </Button>
         </Left>
