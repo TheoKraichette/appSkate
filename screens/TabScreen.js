@@ -3,7 +3,6 @@ import React from 'react'
 import { StyleSheet, Image } from 'react-native';
 import HomeScreen from './HomeScreen';
 import MapScreen from './MapScreen';
-import AddSpotScreen from './AddSpotScreen';
 
 export const TabScreen = createBottomTabNavigator({
 
@@ -28,16 +27,7 @@ export const TabScreen = createBottomTabNavigator({
               }
           }
         },
-    AddSpot: {
-      screen: AddSpotScreen, 
-      navigationOptions: {
-          tabBarIcon: () => { // On définit le rendu de nos icônes par les images récemment ajoutés au projet
-              return <Image
-                source={require('../assets/skatee.png')}
-                style={styles.icon}/> // On applique un style pour les redimensionner comme il faut
-              }
-          }
-        },
+
         },
         
         {

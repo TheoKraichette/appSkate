@@ -46,7 +46,6 @@ export default class MapScreen extends React.Component {
                     latitudeDelta: 0.0022,
                     longitudeDelta: 0.0121
                 }
-
                 this.setState({initialPosition});
             },
         )
@@ -57,7 +56,6 @@ export default class MapScreen extends React.Component {
         
         <View>
             <HeaderMap/>
-            
             <MapView
             style={styles.map}
             provider={PROVIDER_GOOGLE}
@@ -65,7 +63,6 @@ export default class MapScreen extends React.Component {
             showsUserLocation={true}
             initialRegion={this.state.initialPosition}
             customMapStyle={mapStyle}/>
-
         </View>
         );
     }
@@ -78,7 +75,7 @@ const styles = StyleSheet.create({
 
     },
     map: {
-        height: '90%',
+        height: '95%',
     }
 
 });

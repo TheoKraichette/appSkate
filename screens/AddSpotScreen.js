@@ -42,6 +42,7 @@ export default class App extends Component {
         }
     }
 }
+
   locateCurrentPosition = () => {
     Geolocation.getCurrentPosition(
       (position) => {
@@ -128,7 +129,6 @@ export default class App extends Component {
                 /> */}
               </MapView>
             }
-
             <View style={styles.mapMarkerContainer}>
               <Text style={{ fontFamily: 'fontawesome', fontSize: 42, color: "#E2DEDE" }}>&#xf041;</Text>
             </View>
@@ -143,7 +143,7 @@ export default class App extends Component {
                 title="GO BACK"
                 disabled={this.state.regionChangeProgress}
                 onPress={this.goBack}
-                containerStyle={{backgroundColor: "#"}}
+                color='black'
               >
               </Button>
             </View> 
@@ -151,8 +151,7 @@ export default class App extends Component {
                 title="PICK THIS LOCATION"
                 disabled={this.state.regionChangeProgress}
                 onPress={this.onLocationSelect}
-                containerStyle={{backgroundColor: "#000000"}}
-              >
+                color='black'>
               </Button>
           </View>
         </View>

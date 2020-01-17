@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import { withNavigation } from 'react-navigation';
-import * as firebaseApp from 'firebase'
+import * as firebaseApp from 'firebase';
+import { StatusBar, View } from 'react-native';
 
 class HeaderIconExample extends Component {
     
@@ -12,26 +13,29 @@ class HeaderIconExample extends Component {
     goBack = () => {
       this.props.navigation.goBack();
     }
+    
   render() {
     return (
-      <Container>
-        <Header>
+    <View>
+      <StatusBar/>
+        <Header
+          style={{backgroundColor: 'black'}}>
           <Left>
             <Button transparent
             onPress={this.goBack}>
-              <Icon name='back' />
+              <Icon name='home' />
             </Button>
           </Left>
           <Body>
             <Title>Header</Title>
           </Body>
           <Right>
-            <Button onPress={this.signOutUser}>
+            <Button transparent onPress={this.signOutUser}>
               <Text style={{color: 'white'}}>Logout</Text>
             </Button>
           </Right>
         </Header>
-      </Container>
+      </View>
     );
   }
 }

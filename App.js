@@ -5,7 +5,10 @@ import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import { TabScreen } from './screens/TabScreen'
 import AddSpotScreen from './screens/AddSpotScreen'
-import * as firebase from 'firebase'
+import { StatusBar } from 'react-native';
+import * as firebase from 'firebase';
+
+StatusBar.setBackgroundColor('black')
 
 var firebaseConfig = {
   apiKey: "AIzaSyD1UcTeqFQJimRON0_2iKGCusrHvc3MObQ",

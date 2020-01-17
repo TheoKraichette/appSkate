@@ -5,7 +5,7 @@ import {
   View,
   FlatList,
   TouchableWithoutFeedback,
-  ScrollView
+  ScrollView, StatusBar
 } from "react-native";
 import * as firebaseApp from "firebase";
 import {
@@ -152,8 +152,8 @@ export default class App extends React.Component {
 
   render() {
     return (            
-      <PaperProvider>    
-            <Header/>
+      <PaperProvider>
+        <Header/>
         <View style={styles.container}>
           <ScrollView>
             <Text>City list from firebase</Text>
@@ -170,17 +170,18 @@ export default class App extends React.Component {
             />  
             <View style={{height:10}}></View>          
             <Button 
-              icon={this.state.selecteditem === null ? "add" : "update"}
               mode="contained"
+              style={{backgroundColor:'black'}}
               onPress={() => this.saveItem()}
             >
               {this.state.selecteditem === null ? "add" : "update"}
-            </Button>
+            </Button>                  
+            <ScrollView horizontal={true}>
+
             <FlatList
               data={this.state.dataSource}
               renderItem={({ item }) => (
                 <View>
-                  <ScrollView horizontal={true}>
                     <TouchableWithoutFeedback>
                       <View style={{ paddingTop: 10 }}>
                         <Text
@@ -196,18 +197,19 @@ export default class App extends React.Component {
                         this.setState({
                           selecteditem: item,
                           itemname: item.name
-                        })
+                        }) 
                       }
                     >
                       <View>
                         <Text style={styles.item}>{item.name} </Text>
                       </View>
                     </TouchableWithoutFeedback>
-                  </ScrollView>
                 </View>
               )}
               ItemSeparatorComponent={this.renderSeparator}
-            />
+            />                  
+            </ScrollView>
+
             <Text />
 
             

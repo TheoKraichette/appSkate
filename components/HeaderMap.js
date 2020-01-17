@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Text } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import { withNavigation } from 'react-navigation';
 
@@ -12,8 +13,8 @@ class HeaderIconExample extends Component {
   }
   render() {
     return (
-        <Container>
-        <Header>
+        <Header
+                  style={{backgroundColor: 'black'}}>
         <Left>
             <Button transparent
             onPress={this.goBack}>
@@ -26,12 +27,13 @@ class HeaderIconExample extends Component {
         <Right>
             <Button
               onPress={this.goToAddSpot}
-              transparent>
-            <Icon name='menu' />
+              transparent
+              textStyle='Ajouté un Spot'>
+            <Text style={{color: 'white'}}>Ajouté un Spot </Text>
+            <Icon name='add' />
             </Button>
         </Right>
         </Header>
-    </Container>
     );
   }
 }
