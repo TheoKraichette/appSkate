@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
+import { Text } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
-export default class HeaderIconExample extends Component {
-    signOutUser = () => {
-        firebase.auth().signOut();
-    };
+import { withNavigation } from 'react-navigation';
+import * as firebaseApp from 'firebase'
 
+class HeaderIconExample extends Component {
+    
+    signOutUser = () => {
+        firebaseApp.auth().signOut();
+    };
+    goBack = () => {
+      this.props.navigation.goBack();
+    }
   render() {
     return (
       <Container>
         <Header>
           <Left>
-            <Button transparent>
+            <Button transparent
+            onPress={this.goBack}>
               <Icon name='back' />
             </Button>
           </Left>
@@ -19,6 +27,7 @@ export default class HeaderIconExample extends Component {
           </Body>
           <Right>
             <Button onPress={this.signOutUser}>
+              <Text style={{color: 'white'}}>Logout</Text>
             </Button>
           </Right>
         </Header>
@@ -26,3 +35,4 @@ export default class HeaderIconExample extends Component {
     );
   }
 }
+export default withNavigation(HeaderIconExample)

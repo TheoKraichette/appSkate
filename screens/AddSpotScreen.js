@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Platform, ActivityIndicator, Button} from 'react-native';
+import { Text, View, Platform, Button} from 'react-native';
 import MapView from "react-native-maps";
 import Geolocation from '@react-native-community/geolocation';
 import { request, PERMISSIONS} from 'react-native-permissions';
 import mapStyle from '../mapStyle';
 import styles from "../styles";
+import LoadingScreen from './LoadingScreen';
 
 // Disable yellow box warning messages
 export default class App extends Component {
@@ -103,8 +104,8 @@ export default class App extends Component {
   render() {
     if (this.state.loading) {
       return (
-        <View style={styles.spinnerView}>
-          <ActivityIndicator size="large" color="#0000ff" />
+        <View>
+          <LoadingScreen/>
         </View>
       );
     } else {
