@@ -5,7 +5,7 @@ import {
   View,
   FlatList,
   TouchableWithoutFeedback,
-  ScrollView, StatusBar
+  ScrollView
 } from "react-native";
 import * as firebaseApp from "firebase";
 import {
@@ -25,13 +25,12 @@ import { Platform } from "react-native";
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    
 
     if (!firebaseApp.apps.length) {
       firebaseApp.initializeApp(firebaseConfig);
     }
     this.tasksRef = firebaseApp.database().ref("/spots");
-    
+
     const dataSource = [];
     this.state = {
       dataSource: dataSource,
@@ -40,7 +39,7 @@ export default class App extends React.Component {
       confirmVisible: false
     };
   }
-  
+
   componentDidMount() {
     // start listening for firebase updates
     this.listenForTasks(this.tasksRef);
@@ -70,8 +69,7 @@ export default class App extends React.Component {
           width: "90%",
           height: 2,
           backgroundColor: "#BBB5B3"
-        }}
-      >
+        }}>
         <View />
       </View>
     );
@@ -151,7 +149,6 @@ export default class App extends React.Component {
   undoDeleteItem() {
     this.addItem(this.state.deleteItem.name);
   }
-  
 
   render() {
     return (            
@@ -223,10 +220,8 @@ export default class App extends React.Component {
               spotseparatorComponent={this.renderSeparator}
             />                  
             </ScrollView>
-
-            <Text />
-
             
+            <Text />
             <Portal>
               <Dialog
                 visible={this.state.confirmVisible}

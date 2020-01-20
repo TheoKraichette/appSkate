@@ -69,6 +69,15 @@ export default class RegisterScreen extends React.Component {
                             value={this.state.password}
                         ></TextInput>
                     </View>
+
+                    <View style={{ marginTop: 32 }}>
+                        <Text style={styles.inputTitle}>Confirm Password</Text>
+                        <TextInput
+                            style={styles.input}
+                            secureTextEntry
+                            autoCapitalize="none"
+                        ></TextInput>
+                    </View>
                 </View>
 
                 <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
