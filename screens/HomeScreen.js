@@ -30,7 +30,7 @@ export default class App extends React.Component {
     if (!firebaseApp.apps.length) {
       firebaseApp.initializeApp(firebaseConfig);
     }
-    this.tasksRef = firebaseApp.database().ref("/items");
+    this.tasksRef = firebaseApp.database().ref("/spots");
     
     const dataSource = [];
     this.state = {
@@ -51,6 +51,7 @@ export default class App extends React.Component {
       var tasks = [];
       dataSnapshot.forEach(child => {
         tasks.push({
+          location: child.val().location,
           name: child.val().name,
           key: child.key
         });
@@ -82,27 +83,30 @@ export default class App extends React.Component {
 
   performDeleteItem(key) {
     var updates = {};
-    updates["/items/" + key] = null;
+    updates["/spots/" + key] = null;
     return firebaseApp
       .database()
       .ref()
       .update(updates);   
   }
 
-  addItem(itemName) {
+  addItem(itemLocation, itemName) {
     var newPostKey = firebaseApp
       .database()
       .ref()
-      .child("items")
+      .child("spots")
       .push().key;
 
-   
     var updates = {};
-    updates["/items/" + newPostKey] = {
+    updates["/spots/" + newPostKey] = {
       name:
         itemName === "" || itemName == undefined
           ? this.state.itemname
-          : itemName
+          : itemName,
+        location:
+        itemLocation === "" || itemLocation == undefined
+          ? this.state.itemLocation
+          : itemLocation
     };
 
     return firebaseApp
@@ -112,9 +116,8 @@ export default class App extends React.Component {
   }
 
   updateItem() {
-    
     var updates = {};
-    updates["/items/" + this.state.selecteditem.key] = {
+    updates["/spots/" + this.state.selecteditem.key] = {
       name: this.state.itemname
     };
 
@@ -158,7 +161,7 @@ export default class App extends React.Component {
           <ScrollView>
             <Text>City list from firebase</Text>
             <TextInput
-              label="City"
+              label="Name"
               style={{
                 height: 50,
                 width: 250,
@@ -167,7 +170,18 @@ export default class App extends React.Component {
               }}
               onChangeText={text => this.setState({ itemname: text })}
               value={this.state.itemname}
-            />  
+            />        
+            <TextInput
+            label="Location"
+            style={{
+              height: 50,
+              width: 250,
+              borderColor: "gray",
+              borderWidth: 1                
+            }}
+            onChangeText={text => this.setState({ itemLocation: text })}
+            value={this.state.itemLocation}
+          />
             <View style={{height:10}}></View>          
             <Button 
               mode="contained"
@@ -206,7 +220,7 @@ export default class App extends React.Component {
                     </TouchableWithoutFeedback>
                 </View>
               )}
-              ItemSeparatorComponent={this.renderSeparator}
+              spotseparatorComponent={this.renderSeparator}
             />                  
             </ScrollView>
 

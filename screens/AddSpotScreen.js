@@ -141,7 +141,6 @@ export default class App extends Component {
             <View style={styles.btnContainer}>
                 <Button
                 title="GO BACK"
-                disabled={this.state.regionChangeProgress}
                 onPress={this.goBack}
                 color='black'
               >
@@ -149,7 +148,6 @@ export default class App extends Component {
             </View> 
             <Button
                 title="PICK THIS LOCATION"
-                disabled={this.state.regionChangeProgress}
                 onPress={this.onLocationSelect}
                 color='black'>
               </Button>
