@@ -116,7 +116,8 @@ export default class HomeScreen extends React.Component {
   updateItem() {
     var updates = {};
     updates["/spots/" + this.state.selecteditem.key] = {
-      name: this.state.itemname
+      name: this.state.itemname,
+      location: this.state.itemLocation
     };
 
     return firebaseApp
@@ -129,7 +130,7 @@ export default class HomeScreen extends React.Component {
     if (this.state.selecteditem === null) this.addItem();
     else this.updateItem();
 
-    this.setState({ itemname: "", selecteditem: null });
+    this.setState({ itemname: "", selecteditem: null, itemLocation: "" });
   }
 
   hideDialog(yesNo) {
