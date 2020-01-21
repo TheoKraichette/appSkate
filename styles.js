@@ -12,18 +12,16 @@ export default styles = StyleSheet.create({
   mapMarkerContainer: {
     left: '47%',
     position: 'absolute',
-    top: '42%'
+    top: '15%'
   },
   mapMarker: {
     fontSize: 40,
     color: "red"
   },
   deatilSection: {
-    marginBottom: 90,
     flex: 1,
     backgroundColor: "#fff",
     padding: 10,
-    display: "flex",
     justifyContent: "flex-start"
   },
   spinnerView: {

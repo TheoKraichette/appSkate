@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Platform, Button} from 'react-native';
+import { Text, View, Platform, Button, StyleSheet, TextInput} from 'react-native';
 import MapView from "react-native-maps";
 import Geolocation from '@react-native-community/geolocation';
 import { request, PERMISSIONS} from 'react-native-permissions';
@@ -73,7 +73,7 @@ export default class AddSpot extends Component {
     this.setState({ isMapReady: true, marginTop: 0 });
   }
 
-  goBack = () => {
+  goBack = (navigation) => {
     this.props.navigation.goBack();
   }
 
@@ -115,45 +115,71 @@ export default class AddSpot extends Component {
           <View style={{ flex: 2 }}>
             {!!this.state.region.latitude && !!this.state.region.longitude &&
               <MapView
-                style={{ ...styles.map, marginTop: this.state.marginTop }}
+                style={stylesMap.map}
                 initialRegion={this.state.region}
                 showsUserLocation={true}
                 onMapReady={this.onMapReady}
                 onRegionChangeComplete={this.onRegionChange}
                 customMapStyle={mapStyle}
               >
-                {/* <MapView.Marker
-                  coordinate={{ "latitude": this.state.region.latitude, "longitude": this.state.region.longitude }}
-                  title={"Your Location"}
-                  draggable
-                /> */}
               </MapView>
             }
             <View style={styles.mapMarkerContainer}>
               <Text style={{ fontFamily: 'fontawesome', fontSize: 42, color: "#E2DEDE" }}>&#xf041;</Text>
             </View>
-          </View>
-          <View style={styles.deatilSection}>
-            <Text style={{ fontSize: 16, fontWeight: "bold", fontFamily: "roboto", marginBottom: 5 }}>Move map for pick location</Text>
-            <Text style={{ fontSize: 10, color: "#999" }}>LOCATION</Text>
-            <Text numberOfLines={2} style={{ fontSize: 14, paddingVertical: 5, borderBottomColor: "silver", borderBottomWidth: 0.5 }}>
-              {!this.state.regionChangeProgress ? this.state.userLocation : "Identifying Location..."}</Text>
-            <View style={styles.btnContainer}>
+            <View style={styles.deatilSection}>
+              <Text style={{ fontSize: 16, fontWeight: "bold", fontFamily: "roboto", marginBottom: 5 }}>Move map for pick location</Text>
+              <Text style={{ fontSize: 10, color: "#999" }}>LOCATION</Text>
+              <Text numberOfLines={2} style={{ fontSize: 14, paddingVertical: 5, borderBottomColor: "silver", borderBottomWidth: 0.5 }}>
+                {!this.state.regionChangeProgress ? this.state.userLocation : "Identifying Location..."}</Text>
+              <Button
+                  title="PICK THIS LOCATION"
+                  onPress={this.onLocationSelect}
+                  color='black'>
+                </Button>
                 <Button
-                title="GO BACK"
-                onPress={this.goBack}
-                color='black'
-              >
-              </Button>
-            </View> 
-            <Button
-                title="PICK THIS LOCATION"
-                onPress={this.onLocationSelect}
-                color='black'>
-              </Button>
+                  title="GO BACK"
+                  onPress={this.goBack}
+                  color='black'>
+                </Button>
+                <TextInput
+                  label="Name"
+                  style={{
+                    height: 50,
+                    width: 250,
+                    borderColor: "gray",
+                    borderWidth: 1                
+                  }}
+                  onChangeText={text => this.setState({ itemname: text })}
+                  value={this.state.itemname}
+                />        
+                <TextInput
+                  label="Location"
+                  style={{
+                    height: 50,
+                    width: 250,
+                    borderColor: "gray",
+                    borderWidth: 1                
+                  }}
+                  onChangeText={text => this.setState({ itemLocation: text })}
+                  value={this.state.itemLocation}
+                />
+            </View>
           </View>
+
         </View>
       );
     }
   }
 }
+const stylesMap = StyleSheet.create({
+  container: {
+      flex: 1,
+      justifyContent: "center",
+
+  },
+  map: {
+      height: '40%',
+  }
+
+});
