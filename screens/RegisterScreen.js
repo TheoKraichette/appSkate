@@ -1,4 +1,3 @@
-  
 import React from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import * as firebase from "firebase";
@@ -6,8 +5,7 @@ import * as firebase from "firebase";
 export default class RegisterScreen extends React.Component {
     static navigationOptions = {
         header: null
-      }
-      
+    }
     state = {
         name: "",
         email: "",
@@ -46,7 +44,7 @@ export default class RegisterScreen extends React.Component {
                             autoCapitalize="none"
                             onChangeText={name => this.setState({ name })}
                             value={this.state.name}
-                        ></TextInput>
+                        />
                     </View>
 
                     <View style={{ marginTop: 32 }}>
@@ -56,7 +54,7 @@ export default class RegisterScreen extends React.Component {
                             autoCapitalize="none"
                             onChangeText={email => this.setState({ email })}
                             value={this.state.email}
-                        ></TextInput>
+                        />
                     </View>
 
                     <View style={{ marginTop: 32 }}>
@@ -67,16 +65,7 @@ export default class RegisterScreen extends React.Component {
                             autoCapitalize="none"
                             onChangeText={password => this.setState({ password })}
                             value={this.state.password}
-                        ></TextInput>
-                    </View>
-
-                    <View style={{ marginTop: 32 }}>
-                        <Text style={styles.inputTitle}>Confirm Password</Text>
-                        <TextInput
-                            style={styles.input}
-                            secureTextEntry
-                            autoCapitalize="none"
-                        ></TextInput>
+                        />
                     </View>
                 </View>
 

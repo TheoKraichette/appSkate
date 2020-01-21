@@ -4,7 +4,7 @@ import * as firebase from "firebase";
 
 
 export default class LoginScreen extends React.Component {
-        
+
     state = {
         email: "",
         password: "",
@@ -16,24 +16,21 @@ export default class LoginScreen extends React.Component {
         header: null
     }
 
-
-
-        
     componentDidMount() {
         // using keyboardWillHide is better but it does not work for android
         this.keyboardHideListener = Keyboard.addListener(Platform.OS === 'android' ? 'keyboardDidHide': 'keyboardWillHide', this.keyboardHideListener.bind(this));
     }
-    
+
     componentWillUnmount() {
         this.keyboardHideListener.remove()
     }
-    
+
     keyboardHideListener() {
         this.setState({
             keyboardAvoidingViewKey:'keyboardAvoidingViewKey' + new Date().getTime()
         });
     }
-    
+
     handleLogin = () => {
         const { email, password } = this.state;
 
@@ -99,8 +96,6 @@ export default class LoginScreen extends React.Component {
                 </View>
             </KeyboardAvoidingView>
         </ScrollView>
-
-
         );
     }
 }

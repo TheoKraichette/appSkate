@@ -8,7 +8,7 @@ import styles from "../styles";
 import LoadingScreen from './LoadingScreen';
 
 // Disable yellow box warning messages
-export default class App extends Component {
+export default class AddSpot extends Component {
   constructor(props) {
     super(props);
     this.state = {

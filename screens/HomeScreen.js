@@ -22,7 +22,7 @@ import Header from '../components/Header';
 import { Platform } from "react-native";
 
 
-export default class App extends React.Component {
+export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
 
@@ -207,7 +207,8 @@ export default class App extends React.Component {
                       onPress={() =>
                         this.setState({
                           selecteditem: item,
-                          itemname: item.name
+                          itemname: item.name,
+                          itemLocation: item.location
                         }) 
                       }
                     >
@@ -220,7 +221,7 @@ export default class App extends React.Component {
               spotseparatorComponent={this.renderSeparator}
             />                  
             </ScrollView>
-            
+
             <Text />
             <Portal>
               <Dialog

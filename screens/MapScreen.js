@@ -7,7 +7,7 @@ import mapStyle from '../mapStyle';
 import HeaderMap from '../components/HeaderMap';
 
 export default class MapScreen extends React.Component {
-    
+
     static navigationOptions = {
         header: null
     }
@@ -17,7 +17,6 @@ export default class MapScreen extends React.Component {
     }
     constructor(props){
         super(props);
-
 
         this.state = {}
     }
@@ -47,13 +46,15 @@ export default class MapScreen extends React.Component {
                     longitudeDelta: 0.0121
                 }
                 this.setState({initialPosition});
+                console.log(this.state.initialPosition)
             },
+            error => console.log(error), 
         )
     }
 
     render() {
         return (
-        
+
         <View>
             <HeaderMap/>
             <MapView

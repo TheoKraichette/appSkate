@@ -6,7 +6,6 @@ import MapScreen from './MapScreen';
 
 export const TabScreen = createBottomTabNavigator({
 
-  
     Home: {
         screen: HomeScreen, 
         navigationOptions: {
@@ -28,8 +27,8 @@ export const TabScreen = createBottomTabNavigator({
           }
         },
 
-        },
-        
+      },
+
         {
         tabBarOptions: {
             activeBackgroundColor: '#DDDDDD', // Couleur d'arrière-plan de l'onglet sélectionné
@@ -39,7 +38,6 @@ export const TabScreen = createBottomTabNavigator({
           }
         }
       )
-      
 
     const styles = StyleSheet.create({
         icon: {
