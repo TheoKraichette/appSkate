@@ -3,17 +3,11 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList,
-  TouchableWithoutFeedback,
-  ScrollView, Platform
+  Platform
 } from "react-native";
 import {
   TextInput,
   Button,
-  Snackbar,
-  Portal,
-  Dialog,
-  Paragraph,
   Provider as PaperProvider
 } from "react-native-paper";
 import MapView from "react-native-maps";
@@ -22,7 +16,6 @@ import { request, PERMISSIONS} from 'react-native-permissions';
 import mapStyle from '../mapStyle';
 import styles from "../styles";
 import LoadingScreen from './LoadingScreen';
-import Crud from '../components/Crud';
 import * as firebaseApp from "firebase";
 import { firebaseConfig } from '../App';
 
@@ -153,32 +146,6 @@ export default class AddSpot extends Component {
     });
 }
 
-renderSeparator = () => {
-    return (
-    <View
-        style={{
-        width: "90%",
-        height: 2,
-        backgroundColor: "#BBB5B3"
-        }}>
-        <View />
-    </View>
-    );
-};
-
-deleteItem(item) {
-    this.setState({ deleteItem: item, confirmVisible: true });
-}
-
-performDeleteItem(key) {
-    var updates = {};
-    updates["/spots/" + key] = null;
-    return firebaseApp
-    .database()
-    .ref()
-    .update(updates);   
-}
-
 addItem(userLocation, itemName) {
     var newPostKey = firebaseApp
     .database()
@@ -204,18 +171,7 @@ addItem(userLocation, itemName) {
     .update(updates);    
 }
 
-updateItem() {
-    var updates = {};
-    updates["/spots/" + this.state.selecteditem.key] = {
-    name: this.state.itemname,
-    location: this.state.userLocation
-    };
 
-    return firebaseApp
-    .database()
-    .ref()
-    .update(updates);   
-}
 
 saveItem() {
     if (this.state.selecteditem === null) this.addItem();
@@ -224,23 +180,6 @@ saveItem() {
     this.setState({ itemname: "", selecteditem: null, userLocation: "" });
 }
 
-hideDialog(yesNo) {
-    this.setState({ confirmVisible: false });
-    if (yesNo === true) {
-    this.performDeleteItem(this.state.deleteItem.key).then(() => {
-        this.setState({ snackbarVisible: true });
-    });
-    }
-}
-
-showDialog() {
-    this.setState({ confirmVisible: true });
-    console.log("in show dialog");
-}
-
-undoDeleteItem() {
-    this.addItem(this.state.deleteItem.name);
-}
 
   render() {
     if (this.state.loading) {
@@ -252,7 +191,7 @@ undoDeleteItem() {
     } else {
       return (
         <View style={styles.container}>
-          <View style={{ flex: 2 }}>
+          <View style={{ flex: 1 }}>
             {!!this.state.region.latitude && !!this.state.region.longitude &&
               <MapView
                 style={stylesMap.map}
@@ -272,16 +211,10 @@ undoDeleteItem() {
               <Text style={{ fontSize: 10, color: "#999" }}>LOCATION</Text>
               <Text numberOfLines={2} style={{ fontSize: 14, paddingVertical: 5, borderBottomColor: "silver", borderBottomWidth: 0.5 }}>
                 {!this.state.regionChangeProgress ? this.state.userLocation : "Identifying Location..."}</Text>
-                <Button
-                  title="GO BACK"
-                  onPress={this.goBack}
-                  color='black'>
-                </Button>
             </View>
           </View>
-          <View/>
           <PaperProvider>
-            <ScrollView>
+            <View style={styles.container}>
                 <Text>City list from firebase</Text>
                 <TextInput
                 label="Name"
@@ -289,22 +222,22 @@ undoDeleteItem() {
                     height: 50,
                     width: 250,
                     borderColor: "gray",
-                    borderWidth: 1                
+                    borderWidth: 1               
                 }}
                 onChangeText={text => this.setState({ itemname: text })}
                 value={this.state.itemname}
                 />        
                 <TextInput
-                label="Location"
-                style={{
-                height: 50,
-                width: 250,
-                borderColor: "gray",
-                borderWidth: 1                
-                }}
-                onChangeText={text => this.setState({ userLocation: text })}
-                value={this.state.userLocation}
-            />
+                  label="Location"
+                  style={{
+                  height: 50,
+                  width: 250,
+                  borderColor: "gray",
+                  borderWidth: 1                
+                  }}
+                  onChangeText={text => this.setState({ userLocation: text })}
+                  value={this.state.userLocation}
+                />
                 <View style={{height:10}}></View>          
                 <Button 
                 mode="contained"
@@ -312,88 +245,28 @@ undoDeleteItem() {
                 onPress={() => this.saveItem()}
                 >
                 {this.state.selecteditem === null ? "add" : "update"}
-                </Button>                  
-                <ScrollView horizontal={true}>
-
-                <FlatList
-                data={this.state.dataSource}
-                renderItem={({ item }) => (
-                    <View>
-                        <TouchableWithoutFeedback>
-                        <View style={{ paddingTop: 10 }}>
-                            <Text
-                            style={{ color: "#4B0082" }}
-                            onPress={() => this.deleteItem(item)}
-                            >
-                            Delete
-                            </Text>
-                        </View>
-                        </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback
-                        onPress={() =>
-                            this.setState({
-                            selecteditem: item,
-                            itemname: item.name,
-                            userLocation: item.location
-                            }) 
-                        }
-                        >
-                        <View>
-                            <Text style={styles.item}>{item.name} </Text>
-                        </View>
-                        </TouchableWithoutFeedback>
-                    </View>
-                )}
-                spotseparatorComponent={this.renderSeparator}
-                />                  
-                </ScrollView>
-
-                <Text />
-                <Portal>
-                <Dialog
-                    visible={this.state.confirmVisible}
-                    onDismiss={() => this.hideDialog(false)}
-                >
-                    <Dialog.Title>Confirm</Dialog.Title>
-                    <Dialog.Content>
-                    <Paragraph>Are you sure you want to delete this?</Paragraph>
-                    </Dialog.Content>
-                    <Dialog.Actions>
-                    <Button onPress={() => this.hideDialog(true)}>Yes</Button>
-                    <Button onPress={() => this.hideDialog(false)}>No</Button>
-                    </Dialog.Actions>
-                </Dialog>
-                </Portal>
-            </ScrollView>
-            <Snackbar
-                visible={this.state.snackbarVisible}
-                onDismiss={() => this.setState({ snackbarVisible: false })}
-                action={{
-                label: "Undo",
-                onPress: () => {
-                    // Do something
-                    this.undoDeleteItem();
-                }
-              }}
-            >
-                Item deleted successfully.
-            </Snackbar>
+                </Button>
+                  <View></View>
+                <Button
+                  onPress={this.goBack}
+                  style={{backgroundColor:'black'}}>
+                    <Text style={{color: 'white'}}>GoBack</Text>
+                  </Button>                  
+            </View>
         </PaperProvider>
         </View>
       );
     }
   }
 }
-export var userLocation;
 
 const stylesMap = StyleSheet.create({
   container: {
       flex: 1,
       justifyContent: "center",
-
   },
   map: {
-      height: '40%',
+      height: '66%',
   }
 
 });
