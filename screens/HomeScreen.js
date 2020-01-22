@@ -183,7 +183,7 @@ export default class HomeScreen extends React.Component {
             <View style={{height:10}}></View>          
             <Button 
               mode="contained"
-              style={{backgroundColor:'black'}}
+              style={{backgroundColor:'#010110'}}
               onPress={() => this.saveItem()}
             >
               {this.state.selecteditem === null ? "add" : "update"}

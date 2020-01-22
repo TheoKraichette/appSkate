@@ -79,8 +79,8 @@ export default class LoginScreen extends React.Component {
                                 value={this.state.password}>
                             </TextInput>
                         </View>
-                    </View>            
-
+                    </View>
+                    
                     <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
                         <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign in</Text>
                     </TouchableOpacity>
@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
         marginTop: 32,
         fontSize: 18,
         fontWeight: "400",
-        textAlign: "center"
+        textAlign: "center",
+        color: '#010110'
 
     },
     errorMessage: {
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 30,
-        backgroundColor: "#8F0F0F",
+        backgroundColor: "#010110",
         borderRadius: 4,
         height: 52,
         alignItems: "center",

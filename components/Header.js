@@ -19,7 +19,7 @@ class HeaderIconExample extends Component {
     <View>
       <StatusBar/>
         <Header
-          style={{backgroundColor: 'black'}}>
+          style={{backgroundColor: '#010110'}}>
           <Left>
             <Button transparent
             onPress={this.goBack}>
