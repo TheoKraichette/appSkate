@@ -14,23 +14,23 @@ class HeaderIconExample extends Component {
   render() {
     return (
         <Header
-                  style={{backgroundColor: 'black'}}>
+            style={{backgroundColor: '#FFFFFF'}}>
         <Left>
             <Button transparent
             onPress={this.goBack}>
-            <Icon name='arrow-back' />
+            <Icon name='arrow-back' style={{color: 'black'}}/>
             </Button>
         </Left>
         <Body>
-            <Title>Header</Title>
+            <Title style={{color: 'black'}}>Header</Title>
         </Body>
         <Right>
             <Button
               onPress={this.goToAddSpot}
               transparent
               textStyle='Ajouté un Spot'>
-            <Text style={{color: 'white'}}>Ajouté un Spot </Text>
-            <Icon name='add' />
+            <Text style={{color: 'black'}}>Ajouté un Spot </Text>
+            <Icon name='add' style={{color: 'black'}} />
             </Button>
         </Right>
         </Header>

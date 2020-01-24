@@ -19,8 +19,6 @@ import LoadingScreen from './LoadingScreen';
 import * as firebaseApp from "firebase";
 import { firebaseConfig } from '../App';
 
-
-
 // Disable yellow box warning messages
 export default class AddSpot extends Component {
   constructor(props) {
@@ -99,7 +97,7 @@ export default class AddSpot extends Component {
     this.setState({ isMapReady: true, marginTop: 0 });
   }
 
-  goBack = (navigation) => {
+  goBack = () => {
     this.props.navigation.goBack();
   }
 

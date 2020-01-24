@@ -19,19 +19,19 @@ class HeaderIconExample extends Component {
     <View>
       <StatusBar/>
         <Header
-          style={{backgroundColor: '#010110'}}>
+          style={{backgroundColor: '#FFFFFF'}}>
           <Left>
             <Button transparent
             onPress={this.goBack}>
-              <Icon name='home' />
+              <Icon name='home' style={{color: 'black'}}/>
             </Button>
           </Left>
           <Body>
-            <Title>Header</Title>
+            <Title style={{color: 'black'}}>Header</Title>
           </Body>
           <Right>
             <Button transparent onPress={this.signOutUser}>
-              <Text style={{color: 'white'}}>Logout</Text>
+              <Text style={{color: 'black'}}>Logout</Text>
             </Button>
           </Right>
         </Header>

@@ -7,7 +7,6 @@ import { TabScreen } from './screens/TabScreen'
 import AddSpotScreen from './screens/AddSpotScreen'
 import * as firebase from 'firebase';
 
-
 var firebaseConfig = {
   apiKey: "AIzaSyD1UcTeqFQJimRON0_2iKGCusrHvc3MObQ",
   authDomain: "appskate-249e5.firebaseapp.com",
