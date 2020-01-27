@@ -48,14 +48,16 @@ export default class LoginScreen extends React.Component {
         <ScrollView>
             <KeyboardAvoidingView behavior={'position'}key={keyboardAvoidingViewKey}>
                 <View>
-                    <Image
-                        source={require('../assets/loginLogo.png')}
-                        style={{marginLeft: 115, marginTop: 20}}>
-                    </Image>
-                    <Text style={styles.greeting}>{`Welcome on WeSkateGo !`}</Text>
+                    <View style={{flex: 1 , alignItems: 'center', marginTop: 10, marginLeft: 10}}>
+                        <Image
+                            source={require('../assets/WSG.png')}
+                            >
+                        </Image>
+                        <Text style={styles.greeting}>{`Welcome on WeSkateGo !`}</Text>
 
-                    <View style={styles.errorMessage}>
+                    <Text style={styles.errorMessage}>
                         {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
+                    </Text>
                     </View>
 
                     <View style={styles.form}>
@@ -82,14 +84,14 @@ export default class LoginScreen extends React.Component {
                     </View>
                     
                     <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-                        <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign in</Text>
+                        <Text style={{ color: "#FFF", fontWeight: "500", fontFamily: 'JackArmstrongBold' }}>Sign in</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         style={{ alignSelf: "center", marginTop: 32 }}
                         onPress={() => this.props.navigation.navigate("Register")}>
                         <Text style={{ color: "#414959", fontSize: 13 }}>
-                            New to AppSkate? <Text style={{ fontWeight: "bold", color: "#000" }}>Sign Up</Text>
+                            New to AppSkate? <Text style={{  color: "#000", fontFamily: 'JackArmstrongBold' }}>Sign Up</Text>
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -127,16 +129,13 @@ const styles = StyleSheet.create({
         marginHorizontal: 30
     },
     inputTitle: {
-        color: "#8A8F9E",
+        color: "#101010",
         fontSize: 10,
         textTransform: "uppercase"
     },
     input: {
-        borderBottomColor: "#8A8F9E",
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        height: 40,
-        fontSize: 15,
-        color: "#161F3D"
+        borderBottomColor: 'black', 
+        borderBottomWidth: 1
     },
     button: {
         marginHorizontal: 30,
