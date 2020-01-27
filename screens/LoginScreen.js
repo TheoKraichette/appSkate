@@ -52,7 +52,7 @@ export default class LoginScreen extends React.Component {
                         source={require('../assets/loginLogo.png')}
                         style={{marginLeft: 115, marginTop: 20}}>
                     </Image>
-                    <Text style={styles.greeting}>{`Welcome on We Skate Go !`}</Text>
+                    <Text style={styles.greeting}>{`Welcome on WeSkateGo !`}</Text>
 
                     <View style={styles.errorMessage}>
                         {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
@@ -88,9 +88,8 @@ export default class LoginScreen extends React.Component {
                     <TouchableOpacity
                         style={{ alignSelf: "center", marginTop: 32 }}
                         onPress={() => this.props.navigation.navigate("Register")}>
-
                         <Text style={{ color: "#414959", fontSize: 13 }}>
-                            New to AppSkate? <Text style={{ fontWeight: "500", color: "#8F0F0F" }}>Sign Up</Text>
+                            New to AppSkate? <Text style={{ fontWeight: "bold", color: "#000" }}>Sign Up</Text>
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -107,6 +106,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "400",
         textAlign: "center",
+        fontFamily: 'JackArmstrongBold',
         color: '#010110'
 
     },
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 30,
-        backgroundColor: "#010110",
+        backgroundColor: "#202020",
         borderRadius: 4,
         height: 52,
         alignItems: "center",

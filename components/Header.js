@@ -27,11 +27,11 @@ class HeaderIconExample extends Component {
             </Button>
           </Left>
           <Body>
-            <Title style={{color: 'black'}}>Header</Title>
+            <Title style={{color: 'black', fontFamily: 'Verdana', fontWeight: 'bold' }}>WeSkateGO</Title>
           </Body>
           <Right>
             <Button transparent onPress={this.signOutUser}>
-              <Text style={{color: 'black'}}>Logout</Text>
+              <Text style={{color: '#101010', fontFamily: 'Verdana', fontWeight:'bold' }}>Logout</Text>
             </Button>
           </Right>
         </Header>

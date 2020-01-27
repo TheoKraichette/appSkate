@@ -29,7 +29,7 @@ componentDidMount() {
     return (            
       <View style={styles.container}>
           <Header/>          
-          <LinearGradient colors={['#FFFFFF', '#6a6c72', '#020117', '#6a6c72', '#f5fffa']} style={styles.linearGradient}>
+          <LinearGradient colors={['#181818', '#161616', '#141414', '#121212', '#101010']} style={styles.linearGradient}>
           <View style={styleWel.welcome}>
             <Text style={styleWel.text}>
               Hi {this.state.displayName} ! Let's ride the world !
@@ -55,7 +55,8 @@ const styleWel = StyleSheet.create({
     borderRadius: 5
   },
   text :{
-    color: 'white'
+    color: 'white',
+    fontFamily: 'JackArmstrongBold'
   }
 })
 

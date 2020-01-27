@@ -239,7 +239,7 @@ saveItem() {
                 <View style={{height:10}}></View>          
                 <Button 
                 mode="contained"
-                style={{backgroundColor:'black'}}
+                style={{backgroundColor:'#101010'}}
                 onPress={() => this.saveItem()}
                 >
                 {this.state.selecteditem === null ? "add" : "update"}
@@ -247,7 +247,7 @@ saveItem() {
                   <View></View>
                 <Button
                   onPress={this.goBack}
-                  style={{backgroundColor:'black'}}>
+                  style={{backgroundColor:'#101010'}}>
                     <Text style={{color: 'white'}}>GoBack</Text>
                   </Button>                  
             </View>

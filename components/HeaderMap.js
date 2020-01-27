@@ -22,14 +22,14 @@ class HeaderIconExample extends Component {
             </Button>
         </Left>
         <Body>
-            <Title style={{color: 'black'}}>Header</Title>
+            <Title style={{color: '#101010', fontFamily: 'Verdana', fontWeight:'bold'}}>WeSkateGO</Title>
         </Body>
         <Right>
             <Button
               onPress={this.goToAddSpot}
               transparent
               textStyle='Ajouté un Spot'>
-            <Text style={{color: 'black'}}>Ajouté un Spot </Text>
+            <Text style={{color: '#101010', fontFamily: 'Verdana', fontWeight:'bold'}}>Ajouté un Spot </Text>
             <Icon name='add' style={{color: 'black'}} />
             </Button>
         </Right>
