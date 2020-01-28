@@ -29,7 +29,7 @@ storageOptions: {
     path: 'images',
 },
 };
-export default class App extends Component {
+export default class Picture extends Component {
 constructor(props) {
     super(props)
     this.state = {
@@ -171,32 +171,19 @@ render() {
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
         <View style={styles.body}>
-            <Text style={{textAlign:'center',fontSize:20,paddingBottom:10}} >Pick Images from Camera & Gallery</Text>
             <View style={styles.ImageSections}>
-            <View>
-                {this.renderFileData()}
-                <Text  style={{textAlign:'center'}}>Base 64 String</Text>
+                <View>
+                    {this.renderFileData()}
+                </View>
+                <View>
+                    {this.renderFileUri()}
+                </View>
             </View>
-            <View>
-                {this.renderFileUri()}
-                <Text style={{textAlign:'center'}}>File Uri</Text>
-            </View>
-            </View>
-
             <View style={styles.btnParentSection}>
-            <TouchableOpacity onPress={this.chooseImage} style={styles.btnSection}  >
-                <Text style={styles.btnText}>Choose File</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={this.launchCamera} style={styles.btnSection}  >
-                <Text style={styles.btnText}>Directly Launch Camera</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={this.launchImageLibrary} style={styles.btnSection}  >
-                <Text style={styles.btnText}>Directly Launch Image Library</Text>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={this.chooseImage} style={styles.btnSection}  >
+                    <Text style={styles.btnText}>Choose File</Text>
+                </TouchableOpacity>
             </View>
-
         </View>
         </SafeAreaView>
     </Fragment>
@@ -214,19 +201,16 @@ body: {
     justifyContent: 'center',
     borderColor: 'black',
     borderWidth: 1,
-    height: Dimensions.get('screen').height - 20,
-    width: Dimensions.get('screen').width
 },
 ImageSections: {
     display: 'flex',
     flexDirection: 'row',
-    paddingHorizontal: 8,
-    paddingVertical: 8,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 2
 },
 images: {
-    width: 150,
-    height: 150,
+    width: 30,
+    height: 30,
     borderColor: 'black',
     borderWidth: 1,
     marginHorizontal: 3

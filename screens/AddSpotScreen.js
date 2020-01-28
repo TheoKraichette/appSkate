@@ -17,6 +17,7 @@ import styles from "../styles";
 import LoadingScreen from './LoadingScreen';
 import * as firebaseApp from "firebase";
 import { firebaseConfig } from '../App';
+import  Picture  from '../components/Picture';
 
 // Disable yellow box warning messages
 export default class AddSpot extends Component {
@@ -173,15 +174,12 @@ addItem(userLocation, itemName, itemResume) {
     .update(updates);    
 }
 
-
-
 saveItem() {
     if (this.state.selecteditem === null) this.addItem();
     else this.updateItem();
 
     this.setState({ itemname: "", selecteditem: null, userLocation: "" });
 }
-
 
   render() {
     if (this.state.loading) {
@@ -242,14 +240,15 @@ saveItem() {
                     onChangeText={text => this.setState({ itemResume: text })}
                     value={this.state.itemResume}
                   />     
-                  <View style={{height:10}}></View>          
+                  <View style={{height:10}}></View>                   
+                  <Picture/>
                   <Button 
                   mode="contained"
                   style={{backgroundColor:'#101010'}}
                   onPress={() => this.saveItem()}
                   >
                   {this.state.selecteditem === null ? "add" : "update"}
-                  </Button>
+                  </Button>                  
                     <View style={{height: 10}}></View>
                   <Button
                     onPress={this.goBack}
