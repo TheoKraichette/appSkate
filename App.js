@@ -7,7 +7,7 @@ import { TabScreen } from './screens/TabScreen'
 import AddSpotScreen from './screens/AddSpotScreen'
 import * as firebase from 'firebase';
 
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyD1UcTeqFQJimRON0_2iKGCusrHvc3MObQ",
   authDomain: "appskate-249e5.firebaseapp.com",
   databaseURL: "https://appskate-249e5.firebaseio.com",
@@ -33,7 +33,6 @@ const AuthStack = createStackNavigator({
   Login: LoginScreen,
   Register: RegisterScreen
 });
-
 
 const switchNav = createSwitchNavigator({
     Loading: LoadingScreen,

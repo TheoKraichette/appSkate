@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView, KeyboardAvoidingView, Keyboard, Platform  } from "react-native";
 import * as firebase from "firebase";
-
+import GeneralStatusBarColor from '../components/GeneralStatusBarColor';
 
 export default class LoginScreen extends React.Component {
 
@@ -44,59 +44,62 @@ export default class LoginScreen extends React.Component {
         let { keyboardAvoidingViewKey } = this.state
 
         return (
-            
-        <ScrollView>
-            <KeyboardAvoidingView behavior={'position'}key={keyboardAvoidingViewKey}>
-                <View>
-                    <View style={{flex: 1 , alignItems: 'center', marginTop: 10, marginLeft: 10}}>
-                        <Image
-                            source={require('../assets/WSG.png')}
-                            >
-                        </Image>
-                        <Text style={styles.greeting}>{`Welcome on WeSkateGo !`}</Text>
+<View> 
+    <GeneralStatusBarColor backgroundColor="black"
+    barStyle="light-content"/>
+    <ScrollView>
+        <KeyboardAvoidingView behavior={'position'}key={keyboardAvoidingViewKey}>
+            <View>
+                <View style={{flex: 1 , alignItems: 'center', marginTop: 10, marginLeft: 10}}>
+                    <Image
+                        source={require('../assets/WSG.png')}
+                        >
+                    </Image>
+                    <Text style={styles.greeting}>{`Welcome on WeSkateGo !`}</Text>
 
-                    <Text style={styles.errorMessage}>
-                        {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
-                    </Text>
-                    </View>
-
-                    <View style={styles.form}>
-                        <View style={{ marginTop: 16 }}>
-                            <Text style={styles.inputTitle}>Email adress</Text>
-                            <TextInput
-                                style={styles.input}
-                                autoCapitalize="none"
-                                onChangeText={email => this.setState({ email })}
-                                value={this.state.email}>
-                            </TextInput>
-                        </View>
-
-                        <View style={{ marginTop: 32 }}>
-                            <Text style={styles.inputTitle}>Password</Text>
-                            <TextInput
-                                style={styles.input}
-                                secureTextEntry
-                                autoCapitalize="none"
-                                onChangeText={password => this.setState({ password })}
-                                value={this.state.password}>
-                            </TextInput>
-                        </View>
-                    </View>
-                    
-                    <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-                        <Text style={{ color: "#FFF", fontWeight: "500", fontFamily: 'JackArmstrongBold' }}>Sign in</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        style={{ alignSelf: "center", marginTop: 32 }}
-                        onPress={() => this.props.navigation.navigate("Register")}>
-                        <Text style={{ color: "#414959", fontSize: 13 }}>
-                            New to AppSkate? <Text style={{  color: "#000", fontFamily: 'JackArmstrongBold' }}>Sign Up</Text>
-                        </Text>
-                    </TouchableOpacity>
+                <Text style={styles.errorMessage}>
+                    {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
+                </Text>
                 </View>
-            </KeyboardAvoidingView>
-        </ScrollView>
+
+                <View style={styles.form}>
+                    <View style={{ marginTop: 16 }}>
+                        <Text style={styles.inputTitle}>Email adress</Text>
+                        <TextInput
+                            style={styles.input}
+                            autoCapitalize="none"
+                            onChangeText={email => this.setState({ email })}
+                            value={this.state.email}>
+                        </TextInput>
+                    </View>
+
+                    <View style={{ marginTop: 32 }}>
+                        <Text style={styles.inputTitle}>Password</Text>
+                        <TextInput
+                            style={styles.input}
+                            secureTextEntry
+                            autoCapitalize="none"
+                            onChangeText={password => this.setState({ password })}
+                            value={this.state.password}>
+                        </TextInput>
+                    </View>
+                </View>
+                
+                <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
+                    <Text style={{ color: "#FFF", fontWeight: "500", fontFamily: 'JackArmstrongBold' }}>Sign in</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={{ alignSelf: "center", marginTop: 32 }}
+                    onPress={() => this.props.navigation.navigate("Register")}>
+                    <Text style={{ color: "#414959", fontSize: 13 }}>
+                        New to AppSkate? <Text style={{  color: "#000", fontFamily: 'JackArmstrongBold' }}>Sign Up</Text>
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        </KeyboardAvoidingView>
+    </ScrollView>
+</View> 
         );
     }
 }

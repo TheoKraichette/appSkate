@@ -7,8 +7,7 @@ import {
 } from "react-native";
 import {
   TextInput,
-  Button,
-  Provider as PaperProvider
+  Button
 } from "react-native-paper";
 import MapView from "react-native-maps";
 import Geolocation from '@react-native-community/geolocation';
@@ -23,7 +22,7 @@ import { firebaseConfig } from '../App';
 export default class AddSpot extends Component {
   constructor(props) {
     super(props);
-
+    
     if (!firebaseApp.apps.length) {
     firebaseApp.initializeApp(firebaseConfig);
     }
@@ -101,7 +100,7 @@ export default class AddSpot extends Component {
     this.props.navigation.goBack();
   }
 
-  // Fetch location details as a JOSN from google map API
+  // Fetch location details as a JSON from google map API
   fetchAddress = () => {
     fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.state.region.latitude + "," + this.state.region.longitude + "&key=" + "AIzaSyD0eoffcsPhgvOLn7RnwBbrK70uufqMSyM")
       .then((response) => response.json())
@@ -111,7 +110,7 @@ export default class AddSpot extends Component {
           userLocation: userLocation,
           regionChangeProgress: false
         });
-      });
+    });
   }
 
   // Update state on region change
@@ -134,6 +133,7 @@ export default class AddSpot extends Component {
         tasks.push({
         location: child.val().location,
         name: child.val().name,
+        resume: child.val().resume,
         key: child.key
         });
     });
@@ -144,7 +144,7 @@ export default class AddSpot extends Component {
     });
 }
 
-addItem(userLocation, itemName) {
+addItem(userLocation, itemName, itemResume) {
     var newPostKey = firebaseApp
     .database()
     .ref()
@@ -160,7 +160,11 @@ addItem(userLocation, itemName) {
     location:
         userLocation === "" || userLocation == undefined
         ? this.state.userLocation
-        : userLocation
+        : userLocation,
+    resume:
+        itemResume === "" || itemResume == undefined
+        ? this.state.itemResume
+        : itemResume
     };
 
     return firebaseApp
@@ -189,69 +193,71 @@ saveItem() {
     } else {
       return (
         <View style={styles.container}>
-          <View style={{ flex: 1 }}>
-            {!!this.state.region.latitude && !!this.state.region.longitude &&
-              <MapView
-                style={stylesMap.map}
-                initialRegion={this.state.region}
-                showsUserLocation={true}
-                onMapReady={this.onMapReady}
-                onRegionChangeComplete={this.onRegionChange}
-                customMapStyle={mapStyle}
-              >
-              </MapView>
-            }
-            <View style={styles.mapMarkerContainer}>
-              <Text style={{ fontFamily: 'fontawesome', fontSize: 42, color: "#E2DEDE" }}>&#xf041;</Text>
-            </View>
-            <View style={styles.deatilSection}>
-              <Text style={{ fontSize: 16, fontWeight: "bold", fontFamily: "roboto", marginBottom: 5 }}>Move map for pick location</Text>
-              <Text style={{ fontSize: 10, color: "#999" }}>LOCATION</Text>
-              <Text numberOfLines={2} style={{ fontSize: 14, paddingVertical: 5, borderBottomColor: "silver", borderBottomWidth: 0.5 }}>
-                {!this.state.regionChangeProgress ? this.state.userLocation : "Identifying Location..."}</Text>
-            </View>
-          </View>
-          <PaperProvider>
-            <View style={styles.container}>
-                <Text>City list from firebase</Text>
-                <TextInput
-                label="Name"
-                style={{
-                    height: 50,
-                    width: 250,
-                    borderColor: "gray",
-                    borderWidth: 1               
-                }}
-                onChangeText={text => this.setState({ itemname: text })}
-                value={this.state.itemname}
-                />        
-                <TextInput
-                  label="Location"
-                  style={{
-                  height: 50,
-                  width: 250,
-                  borderColor: "gray",
-                  borderWidth: 1                
-                  }}
-                  onChangeText={text => this.setState({ userLocation: text })}
-                  value={this.state.userLocation}
-                />
-                <View style={{height:10}}></View>          
-                <Button 
-                mode="contained"
-                style={{backgroundColor:'#101010'}}
-                onPress={() => this.saveItem()}
+            <View style={{ flex: 1 }}>
+              {!!this.state.region.latitude && !!this.state.region.longitude &&
+                <MapView
+                  style={stylesMap.map}
+                  initialRegion={this.state.region}
+                  showsUserLocation={true}
+                  onMapReady={this.onMapReady}
+                  onRegionChangeComplete={this.onRegionChange}
+                  customMapStyle={mapStyle}
                 >
-                {this.state.selecteditem === null ? "add" : "update"}
-                </Button>
-                  <View></View>
-                <Button
-                  onPress={this.goBack}
-                  style={{backgroundColor:'#101010'}}>
-                    <Text style={{color: 'white'}}>GoBack</Text>
-                  </Button>                  
-            </View>
-        </PaperProvider>
+                </MapView>
+              }
+                <View style={styles.mapMarkerContainer}>
+                  <Text style={{ fontFamily: 'fontawesome', fontSize: 42, color: "#E2DEDE" }}>&#xf041;</Text>
+                </View>
+                <View style={{padding: 10}}>
+                  <Text style={{ fontSize: 16, fontWeight: "bold", fontFamily: "roboto", marginBottom: 5 }}>Move map for pick location</Text>
+                  <Text style={{ fontSize: 10, color: "#999" }}>ADD SPOT</Text>
+                  <TextInput
+                  numberOfLines={2}
+                    label="Location"
+                    style={{
+                    height: 50,
+                    borderColor: "gray",
+                    borderWidth: 1                
+                    }}
+                    onChangeText={text => this.setState({ userLocation: text })}
+                    value={this.state.userLocation}
+                  />
+                  <TextInput
+                  label="Name"
+                  style={{
+                      height: 50,
+                      borderColor: "gray",
+                      borderWidth: 1               
+                  }}
+                  onChangeText={text => this.setState({ itemname: text })}
+                  value={this.state.itemname}
+                  />    
+                  <TextInput
+                    label="Resume"
+                    style={{
+                        height: 50,
+                        borderColor: "gray",
+                        borderWidth: 1               
+                    }}
+                    onChangeText={text => this.setState({ itemResume: text })}
+                    value={this.state.itemResume}
+                  />     
+                  <View style={{height:10}}></View>          
+                  <Button 
+                  mode="contained"
+                  style={{backgroundColor:'#101010'}}
+                  onPress={() => this.saveItem()}
+                  >
+                  {this.state.selecteditem === null ? "add" : "update"}
+                  </Button>
+                    <View style={{height: 10}}></View>
+                  <Button
+                    onPress={this.goBack}
+                    style={{backgroundColor:'#101010'}}>
+                      <Text style={{color: 'white'}}>GoBack</Text>
+                  </Button>
+                </View>      
+            </View>   
         </View>
       );
     }
@@ -264,7 +270,7 @@ const stylesMap = StyleSheet.create({
       justifyContent: "center",
   },
   map: {
-      height: '66%',
+      height: '40%',
   }
 
 });

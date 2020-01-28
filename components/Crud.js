@@ -18,7 +18,6 @@ Paragraph,
 Provider as PaperProvider
 } from "react-native-paper";
 import { firebaseConfig } from '../App';
-import Header from '../components/Header';
 import { Platform } from "react-native";
 
 

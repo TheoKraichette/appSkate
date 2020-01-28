@@ -5,10 +5,10 @@ import {
   StyleSheet
 } from "react-native";
 import Header from '../components/Header';
-import Crud from '../components/Crud';
 import styles from "../styles";
 import * as firebase from "firebase";
 import LinearGradient from 'react-native-linear-gradient';
+import LastSpot from '../components/LastSpot';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -36,7 +36,7 @@ componentDidMount() {
             </Text>
           </View>          
           </LinearGradient>
-          <Crud/>
+          <LastSpot/>
       </View>
     );
   }

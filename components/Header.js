@@ -6,7 +6,7 @@ import * as firebaseApp from 'firebase';
 import { StatusBar, View } from 'react-native';
 
 class HeaderIconExample extends Component {
-    
+
     signOutUser = () => {
         firebaseApp.auth().signOut();
     };
@@ -27,7 +27,7 @@ class HeaderIconExample extends Component {
             </Button>
           </Left>
           <Body>
-            <Title style={{color: 'black', fontFamily: 'Verdana', fontWeight: 'bold' }}>WeSkateGO</Title>
+            <Title style={{color: 'black', fontFamily: 'Verdana', fontWeight:'bold' }}>WeSkateGO</Title>
           </Body>
           <Right>
             <Button transparent onPress={this.signOutUser}>
