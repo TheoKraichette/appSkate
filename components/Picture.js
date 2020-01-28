@@ -217,11 +217,11 @@ images: {
 },
 btnParentSection: {
     alignItems: 'center',
-    marginTop:10
+    marginTop: 5
 },
 btnSection: {
     width: 225,
-    height: 50,
+    height: 40,
     backgroundColor: '#DCDCDC',
     alignItems: 'center',
     justifyContent: 'center',

@@ -244,7 +244,7 @@ saveItem() {
                   <Picture/>
                   <Button 
                   mode="contained"
-                  style={{backgroundColor:'#101010'}}
+                  style={{backgroundColor:'#101010', marginTop: 5}}
                   onPress={() => this.saveItem()}
                   >
                   {this.state.selecteditem === null ? "add" : "update"}

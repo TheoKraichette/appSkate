@@ -73,11 +73,11 @@ renderSeparator = () => {
     </View>
     );
 };
-
+//Ask Confirm
 deleteItem(item) {
     this.setState({ deleteItem: item, confirmVisible: true });
 }
-
+//Delete persist
 performDeleteItem(key) {
     var updates = {};
     updates["/spots/" + key] = null;
@@ -86,7 +86,7 @@ performDeleteItem(key) {
     .ref()
     .update(updates);   
 }
-
+//Add new item
 addItem(itemLocation, itemName) {
     var newPostKey = firebaseApp
     .database()
@@ -112,6 +112,7 @@ addItem(itemLocation, itemName) {
     .update(updates);    
 }
 
+//Update item
 updateItem() {
     var updates = {};
     updates["/spots/" + this.state.selecteditem.key] = {
@@ -124,14 +125,14 @@ updateItem() {
     .ref()
     .update(updates);   
 }
-
+// Save item redirected to AddItem or UpdateItem
 saveItem() {
     if (this.state.selecteditem === null) this.addItem();
     else this.updateItem();
 
     this.setState({ itemname: "", selecteditem: null, itemLocation: "" });
 }
-
+//Pop Up dialog 
 hideDialog(yesNo) {
     this.setState({ confirmVisible: false });
     if (yesNo === true) {
@@ -140,7 +141,7 @@ hideDialog(yesNo) {
     });
     }
 }
-
+// Show Dialog
 showDialog() {
     this.setState({ confirmVisible: true });
     console.log("in show dialog");
