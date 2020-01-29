@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TextInput, Image, TouchableOpacity } from "react-native";
 import * as firebase from "firebase";
 
 export default class RegisterScreen extends React.Component {
@@ -28,9 +28,11 @@ export default class RegisterScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text style={styles.greeting}>{`Hello!\nSign up to get started.`}</Text>
-
+        <View style={styles.container}>
+            <View style={{marginTop: 25}}>
+                <Text style={styles.greeting}>{`Sign up to get started \n \n On We Skate GO`}</Text>
+            </View>
+ 
                 <View style={styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
                 </View>
@@ -70,13 +72,13 @@ export default class RegisterScreen extends React.Component {
                 </View>
 
                 <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
-                    <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign up</Text>
+                    <Text style={{ color: "#FFF", fontFamily: 'JackArmstrongBold' }}>Sign up</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={{ alignSelf: "center", marginTop: 32 }}>
                     <Text style={{ color: "#414959", fontSize: 13 }}
                     onPress={() => this.props.navigation.navigate("Login")}>
-                        Already an account? <Text style={{ fontWeight: "400", color: "#8F0F0F" }}>Login</Text>
+                        Already an account? <Text style={{ fontFamily: 'JackArmstrongBold', color: "#000" }}>Login</Text>
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -92,7 +94,9 @@ const styles = StyleSheet.create({
         marginTop: 32,
         fontSize: 18,
         fontWeight: "400",
-        textAlign: "center"
+        textAlign: "center",
+        fontFamily: 'JackArmstrongBold',
+        color: '#010110'
     },
     errorMessage: {
         height: 72,
@@ -111,20 +115,17 @@ const styles = StyleSheet.create({
         marginHorizontal: 30
     },
     inputTitle: {
-        color: "#8A8F9E",
+        color: "#101010",
         fontSize: 10,
         textTransform: "uppercase"
     },
     input: {
-        borderBottomColor: "#8A8F9E",
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        height: 40,
-        fontSize: 15,
-        color: "#161F3D"
+        borderBottomColor: 'black', 
+        borderBottomWidth: 1
     },
     button: {
         marginHorizontal: 30,
-        backgroundColor: "#8F0F0F",
+        backgroundColor: "#202020",
         borderRadius: 4,
         height: 52,
         alignItems: "center",
