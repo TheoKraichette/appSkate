@@ -42,7 +42,7 @@ export default class MapScreen extends React.Component {
                 let initialPosition = {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
-                    latitudeDelta: 0.0022,
+                    latitudeDelta: 0.000002,
                     longitudeDelta: 0.0121
                 }
                 this.setState({initialPosition});
@@ -55,15 +55,14 @@ export default class MapScreen extends React.Component {
     render() {
         return (
         <View>
-            <StatusBar backgroundColor='black' barStyle='light-content' />
             <HeaderMap/>
             <MapView
-            style={styles.map}
-            provider={PROVIDER_GOOGLE}
-            ref={map => this._map = map}
-            showsUserLocation={true}
-            initialRegion={this.state.initialPosition}
-            customMapStyle={mapStyle}/>
+                style={styles.map}
+                provider={PROVIDER_GOOGLE}
+                showsUserLocation={true}
+                initialRegion={this.state.initialPosition}
+                customMapStyle={mapStyle}
+            />
         </View>
         );
     }
