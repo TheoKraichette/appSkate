@@ -177,8 +177,7 @@ addItem(userLocation, itemName, itemResume) {
 saveItem() {
     if (this.state.selecteditem === null) this.addItem();
     else this.updateItem();
-
-    this.setState({ itemname: "", selecteditem: null, userLocation: "" });
+    this.setState({ itemname: null, selecteditem: null, userLocation: "", itemResume: null });
 }
 
   render() {

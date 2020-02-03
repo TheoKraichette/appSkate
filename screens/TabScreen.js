@@ -3,6 +3,7 @@ import React from 'react'
 import { StyleSheet, Image } from 'react-native';
 import HomeScreen from './HomeScreen';
 import MapScreen from './MapScreen';
+import uploadFiles from './uploadFiles';
 
 export const TabScreen = createBottomTabNavigator({
 

@@ -17,21 +17,26 @@ export default class RegisterScreen extends React.Component {
         firebase
             .auth()
             .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(userCredentials => {
-                return userCredentials.user.updateProfile({
-                    displayName: this.state.name,
-                });
-            })
-            .catch(error => this.setState({ errorMessage: error.message }));
-    };
-
+            .then(() => {
+            firebase.auth().currentUser.updateProfile({
+                displayName : this.state.name,
+            }).then(()=>{
+                firebase.database()
+                .ref('user/' + firebase.auth().currentUser.uid + "/profile")
+                .set({
+                    Username: this.state.name,
+                    UserEmail: this.state.email,
+                })
+            });
+        }).catch(error => this.setState({ errorMessage: error.message }));
+}
     render() {
         return (
         <View style={styles.container}>
             <View style={{marginTop: 25}}>
                 <Text style={styles.greeting}>{`Sign up to get started \n \n On We Skate GO`}</Text>
             </View>
- 
+
                 <View style={styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
                 </View>

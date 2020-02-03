@@ -29,7 +29,7 @@ class HeaderIconExample extends Component {
               onPress={this.goToAddSpot}
               transparent
               textStyle='Ajouté un Spot'>
-            <Text style={{color: '#101010', fontFamily: 'Verdana', fontWeight:'bold'}}>Ajouté un Spot </Text>
+            <Text style={{color: '#101010', fontFamily: 'Verdana', fontWeight:'bold'}}>Add Spot</Text>
             <Icon name='add' style={{color: 'black'}} />
             </Button>
         </Right>
