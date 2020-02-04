@@ -142,7 +142,7 @@ export default class AddSpot extends Component {
     this.setState({
         dataSource: tasks
     });
-    });
+  });
 }
 
 addItem(userLocation, itemName, itemResume) {
@@ -165,7 +165,9 @@ addItem(userLocation, itemName, itemResume) {
     resume:
         itemResume === "" || itemResume == undefined
         ? this.state.itemResume
-        : itemResume
+        : itemResume,
+    user:
+        firebaseApp.auth().currentUser.uid
     };
 
     return firebaseApp

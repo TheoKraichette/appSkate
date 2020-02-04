@@ -3,9 +3,11 @@ import { View, Text, StyleSheet, TextInput, Image, TouchableOpacity } from "reac
 import * as firebase from "firebase";
 
 export default class RegisterScreen extends React.Component {
+    
     static navigationOptions = {
         header: null
     }
+
     state = {
         name: "",
         email: "",
