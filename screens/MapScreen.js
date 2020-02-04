@@ -1,10 +1,12 @@
 import React from "react";
-import { StyleSheet, Platform, View, StatusBar } from "react-native";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import { StyleSheet, Platform, View } from "react-native";
+import MapView , { PROVIDER_GOOGLE} from "react-native-maps";
 import Geolocation from '@react-native-community/geolocation';
 import { request, PERMISSIONS} from 'react-native-permissions';
 import mapStyle from '../mapStyle';
 import HeaderMap from '../components/HeaderMap';
+import * as firebaseApp from 'firebase';
+import { firebaseConfig } from '../App';
 
 export default class MapScreen extends React.Component {
 
@@ -12,13 +14,44 @@ export default class MapScreen extends React.Component {
         header: null,
     }
 
-    componentDidMount(){
+    constructor(props) {
+        super(props);
+    
+        if (!firebaseApp.apps.length) {
+        firebaseApp.initializeApp(firebaseConfig);
+        }
+        this.tasksRef = firebaseApp.database().ref("/spots");
+    
+        const dataSource = [];
+        this.state = {
+        dataSource: dataSource,
+        selecteditem: null,
+        snackbarVisible: false,
+        confirmVisible: false
+        };
+    }
+    
+    componentDidMount() {
+        // start listening for firebase updates
         this.requestLocationPermission();
     }
-    constructor(props){
-        super(props);
-
-        this.state = {}
+    
+    listenForTasks(tasksRef) {
+        tasksRef.on("value", dataSnapshot => {
+        var tasks = [];
+        dataSnapshot.forEach(child => {
+            tasks.push({
+            location: child.val().location,
+            name: child.val().name,
+            key: child.key
+            });
+        });
+    
+        this.setState({
+            dataSource: tasks
+        });
+        console.log(this.state.dataSource)
+        });
     }
 
     requestLocationPermission = async () => {
@@ -46,6 +79,9 @@ export default class MapScreen extends React.Component {
                     longitudeDelta: 0.0121
                 }
                 this.setState({initialPosition});
+                if(initialPosition !== null){
+                    this.listenForTasks(this.tasksRef);
+                }
                 console.log(this.state.initialPosition)
             },
             error => console.log(error), 
@@ -62,6 +98,17 @@ export default class MapScreen extends React.Component {
                 showsUserLocation={true}
                 initialRegion={this.state.initialPosition}
                 customMapStyle={mapStyle}
+                data={this.state.dataSource}
+                renderItem={({ item }) => {
+                    return (
+                <MapView.Marker key={index} coordinate={item.location}>
+                    <View style={[styles.markerWrap]}>
+                    <View style={[styles.ring]}/>
+                    <View style={styles.marker}/>
+                    </View>
+                </MapView.Marker>
+                );
+            }} 
             />
         </View>
         );

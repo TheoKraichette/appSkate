@@ -48,6 +48,7 @@ listenForTasks(tasksRef) {
     this.setState({
         dataSource: tasks
     });
+    console.log(this.state.dataSource)
     });
 }
 
@@ -66,11 +67,7 @@ render() {
                         <View>
                             <TouchableWithoutFeedback
                                 onPress={() =>
-                                    this.setState({
-                                    selecteditem: item,
-                                    itemname: item.name,
-                                    itemLocation: item.location
-                                    }) 
+                                    alert(item.location) 
                                 }
                             >
                                 <View>

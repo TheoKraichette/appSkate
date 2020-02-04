@@ -38,11 +38,9 @@ export default class RegisterScreen extends React.Component {
             <View style={{marginTop: 25}}>
                 <Text style={styles.greeting}>{`Sign up to get started \n \n On We Skate GO`}</Text>
             </View>
-
                 <View style={styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
                 </View>
-
                 <View style={styles.form}>
                     
                     <View style={{ marginTop: 32 }}>
@@ -54,7 +52,6 @@ export default class RegisterScreen extends React.Component {
                             value={this.state.name}
                         />
                     </View>
-
                     <View style={{ marginTop: 32 }}>
                         <Text style={styles.inputTitle}>Email Address</Text>
                         <TextInput
@@ -64,7 +61,6 @@ export default class RegisterScreen extends React.Component {
                             value={this.state.email}
                         />
                     </View>
-
                     <View style={{ marginTop: 32 }}>
                         <Text style={styles.inputTitle}>Password</Text>
                         <TextInput
@@ -76,11 +72,9 @@ export default class RegisterScreen extends React.Component {
                         />
                     </View>
                 </View>
-
                 <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
                     <Text style={{ color: "#FFF", fontFamily: 'JackArmstrongBold' }}>Sign up</Text>
                 </TouchableOpacity>
-
                 <TouchableOpacity style={{ alignSelf: "center", marginTop: 32 }}>
                     <Text style={{ color: "#414959", fontSize: 13 }}
                     onPress={() => this.props.navigation.navigate("Login")}>
