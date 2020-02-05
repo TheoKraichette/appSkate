@@ -117,7 +117,7 @@ export default class AddSpot extends Component {
   // Update state on region change
   onRegionChange = region => {
     this.setState({
-      region,
+      region: region,
       regionChangeProgress: true
     }, () => this.fetchAddress());
     console.log(region)
@@ -145,7 +145,7 @@ export default class AddSpot extends Component {
   });
 }
 
-addItem(userLocation, itemName, itemResume) {
+addItem(region, itemName, itemResume) {
     var newPostKey = firebaseApp
     .database()
     .ref()
@@ -159,9 +159,9 @@ addItem(userLocation, itemName, itemResume) {
         ? this.state.itemname
         : itemName,
     location:
-        userLocation === "" || userLocation == undefined
-        ? this.state.userLocation
-        : userLocation,
+        region === "" || region == undefined
+        ? this.state.region
+        : region,
     resume:
         itemResume === "" || itemResume == undefined
         ? this.state.itemResume

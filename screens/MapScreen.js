@@ -24,6 +24,8 @@ export default class MapScreen extends React.Component {
     
         const dataSource = [];
         this.state = {
+        longitude: 0,
+        latitude: 0,
         dataSource: dataSource,
         selecteditem: null,
         snackbarVisible: false,
@@ -98,18 +100,14 @@ export default class MapScreen extends React.Component {
                 showsUserLocation={true}
                 initialRegion={this.state.initialPosition}
                 customMapStyle={mapStyle}
-                data={this.state.dataSource}
-                renderItem={({ item }) => {
-                    return (
-                <MapView.Marker key={index} coordinate={item.location}>
-                    <View style={[styles.markerWrap]}>
-                    <View style={[styles.ring]}/>
-                    <View style={styles.marker}/>
-                    </View>
-                </MapView.Marker>
-                );
-            }} 
-            />
+            >
+            {this.state.dataSource.map(marker => (
+                <MapView.Marker
+                    key={marker.key}
+                    coordinate={{longitude: marker.location.longitude, latitude: marker.location.latitude}}
+                />
+            ))}
+            </MapView>
         </View>
         );
     }
