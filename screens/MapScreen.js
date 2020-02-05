@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, Platform, View } from "react-native";
-import MapView , { PROVIDER_GOOGLE} from "react-native-maps";
+import { StyleSheet, Platform, View, Text} from "react-native";
+import MapView , { Callout, PROVIDER_GOOGLE } from "react-native-maps";
 import Geolocation from '@react-native-community/geolocation';
-import { request, PERMISSIONS} from 'react-native-permissions';
+import { request, PERMISSIONS } from 'react-native-permissions';
 import mapStyle from '../mapStyle';
 import HeaderMap from '../components/HeaderMap';
 import * as firebaseApp from 'firebase';
@@ -16,12 +16,12 @@ export default class MapScreen extends React.Component {
 
     constructor(props) {
         super(props);
-    
+
         if (!firebaseApp.apps.length) {
         firebaseApp.initializeApp(firebaseConfig);
         }
         this.tasksRef = firebaseApp.database().ref("/spots");
-    
+
         const dataSource = [];
         this.state = {
         longitude: 0,
@@ -48,7 +48,7 @@ export default class MapScreen extends React.Component {
             key: child.key
             });
         });
-    
+
         this.setState({
             dataSource: tasks
         });
@@ -105,7 +105,11 @@ export default class MapScreen extends React.Component {
                 <MapView.Marker
                     key={marker.key}
                     coordinate={{longitude: marker.location.longitude, latitude: marker.location.latitude}}
-                />
+                >
+                    <Callout>
+                        <Text style={styles.item}>{marker.name} </Text>
+                    </Callout>
+                </MapView.Marker>
             ))}
             </MapView>
         </View>
