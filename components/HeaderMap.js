@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
+import { Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import { withNavigation } from 'react-navigation';
 
 class HeaderIconExample extends Component {

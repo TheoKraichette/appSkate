@@ -15,6 +15,10 @@ export default class RegisterScreen extends React.Component {
         errorMessage: null
     };
 
+    componentDidMount() {
+        this._isMounted = true;
+    }
+    
     handleSignUp = () => {
         firebase
             .auth()
@@ -32,6 +36,9 @@ export default class RegisterScreen extends React.Component {
             });
         }).catch(error => this.setState({ errorMessage: error.message }));
 }
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
     render() {
         return (
         <View style={styles.container}>

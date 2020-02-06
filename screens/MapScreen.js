@@ -32,12 +32,12 @@ export default class MapScreen extends React.Component {
         confirmVisible: false
         };
     }
-    
+
     componentDidMount() {
         // start listening for firebase updates
         this.requestLocationPermission();
     }
-    
+
     listenForTasks(tasksRef) {
         tasksRef.on("value", dataSnapshot => {
         var tasks = [];
