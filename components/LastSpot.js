@@ -40,6 +40,7 @@ listenForTasks(tasksRef) {
     dataSnapshot.forEach(child => {
         tasks.push({
         location: child.val().location,
+        resume: child.val().resume,
         name: child.val().name,
         key: child.key
         });
@@ -67,7 +68,7 @@ render() {
                         <View>
                             <TouchableWithoutFeedback
                                 onPress={() =>
-                                    alert(item.location) 
+                                    alert(item.resume)
                                 }
                             >
                                 <View>

@@ -18,8 +18,9 @@ export default class RegisterScreen extends React.Component {
     componentDidMount() {
         this._isMounted = true;
     }
-    
+
     handleSignUp = () => {
+        //Creation d'utilisateur via firebase auth email & password 
         firebase
             .auth()
             .createUserWithEmailAndPassword(this.state.email, this.state.password)
@@ -27,6 +28,7 @@ export default class RegisterScreen extends React.Component {
             firebase.auth().currentUser.updateProfile({
                 displayName : this.state.name,
             }).then(()=>{
+        //Ajout de l'utilisateur a la base de données
                 firebase.database()
                 .ref('user/' + firebase.auth().currentUser.uid + "/profile")
                 .set({
@@ -35,7 +37,8 @@ export default class RegisterScreen extends React.Component {
                 })
             });
         }).catch(error => this.setState({ errorMessage: error.message }));
-}
+    }
+
     componentWillUnmount() {
         this._isMounted = false;
     }

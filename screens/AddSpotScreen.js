@@ -19,8 +19,11 @@ import * as firebaseApp from "firebase";
 import { firebaseConfig } from '../App';
 import  Picture  from '../components/Picture';
 
+console.disableYellowBox = true;
+
 // Disable yellow box warning messages
 export default class AddSpot extends Component {
+  
   constructor(props) {
     super(props);
     
@@ -122,6 +125,7 @@ export default class AddSpot extends Component {
     }, () => this.fetchAddress());
     console.log(region)
   }
+  spotAdded = () => alert('spot added');
 
   // Action to be taken after select location button click
   onLocationSelect = () => alert(this.state.userLocation);
@@ -170,11 +174,18 @@ addItem(region, itemName, itemResume) {
         firebaseApp.auth().currentUser.uid
     };
 
-    return firebaseApp
+    try {
+      firebaseApp
     .database()
     .ref()
-    .update(updates);    
-}
+    .update(updates);
+    alert('spot added');
+    this.goBack();
+    } catch (error) {
+      alert('please complete all fields');
+      console.log(error)
+    }
+  }
 
 saveItem() {
     if (this.state.selecteditem === null) this.addItem();
@@ -218,7 +229,7 @@ saveItem() {
                     borderColor: "gray",
                     borderWidth: 1                
                     }}
-                    onChangeText={text => this.setState({ userLocation: text })}
+                    onChangeText={location => this.setState({ userLocation: location })}
                     value={this.state.userLocation}
                   />
                   <TextInput
@@ -228,7 +239,7 @@ saveItem() {
                       borderColor: "gray",
                       borderWidth: 1               
                   }}
-                  onChangeText={text => this.setState({ itemname: text })}
+                  onChangeText={name => this.setState({ itemname: name })}
                   value={this.state.itemname}
                   />    
                   <TextInput
@@ -238,7 +249,7 @@ saveItem() {
                         borderColor: "gray",
                         borderWidth: 1               
                     }}
-                    onChangeText={text => this.setState({ itemResume: text })}
+                    onChangeText={resume => this.setState({ itemResume: resume })}
                     value={this.state.itemResume}
                   />     
                   <View style={{height:10}}></View>                   
