@@ -36,13 +36,23 @@ export default class DetailSpotScreen extends React.Component {
             <HeaderMap/>          
             <LinearGradient colors={['#181818', '#161616', '#141414', '#121212', '#101010']} style={styles.linearGradient}>
             <View style={styleWel.welcome}>
-        <Text style={{color: 'FFF'}}>    {/*{this.state.data}*/}</Text>
+              <Text style={{color: 'FFF'}}>    {/*{this.state.data}*/}</Text>
             </View>            
             <LastSpot/>
             </LinearGradient>
             <Button
             onPress={this.goBack}
-            style={{backgroundColor:'#101010'}}>
+            style={{backgroundColor:'#101010', margin: 5}}>
+              <Text style={{color: "#FFF", fontWeight: "500", fontFamily: 'JackArmstrongBold' }}>View challenges of this spot</Text>
+            </Button>
+            <Button
+            onPress={this.goBack}
+            style={{backgroundColor:'#101010', margin: 5}}>
+              <Text style={{ color: "#FFF", fontWeight: "500", fontFamily: 'JackArmstrongBold' }}>Add challenge</Text>
+            </Button>
+            <Button
+            onPress={this.goBack}
+            style={{backgroundColor:'#101010', margin: 5}}>
               <Text style={{ color: "#FFF", fontWeight: "500", fontFamily: 'JackArmstrongBold' }}>GoBack</Text>
             </Button>
         </View>
