@@ -165,17 +165,17 @@ render() {
         <SafeAreaView>
         <View style={styles.body}>
             <View style={styles.ImageSections}>
+                <View style={styles.btnParentSection}>
+                    <TouchableOpacity onPress={this.chooseImage} style={styles.btnSection}  >
+                        <Text style={styles.btnText}>Choose File</Text>
+                    </TouchableOpacity>
+                </View>
                 <View>
                     {this.renderFileData()}
                 </View>
                 <View>
                     {this.renderFileUri()}
-                </View>
-            </View>
-            <View style={styles.btnParentSection}>
-                <TouchableOpacity onPress={this.chooseImage} style={styles.btnSection}  >
-                    <Text style={styles.btnText}>Choose File</Text>
-                </TouchableOpacity>
+                </View>            
             </View>
         </View>
         </SafeAreaView>
@@ -199,27 +199,28 @@ ImageSections: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 2
 },
 images: {
     width: 30,
     height: 30,
     borderColor: 'black',
     borderWidth: 1,
-    marginHorizontal: 3
+    marginHorizontal: 3,
+    marginTop: 10
 },
 btnParentSection: {
     alignItems: 'center',
     marginTop: 5
 },
 btnSection: {
-    width: 225,
+    width: 175,
     height: 40,
     backgroundColor: '#DCDCDC',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 3,
-    marginBottom:10
+    marginBottom:10,
+    marginRight: 20
 },
 btnText: {
     textAlign: 'center',

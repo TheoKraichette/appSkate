@@ -7,6 +7,7 @@ import mapStyle from '../mapStyle';
 import HeaderMap from '../components/HeaderMap';
 import * as firebaseApp from 'firebase';
 import { firebaseConfig } from '../App';
+import skate88 from '../assets/skate88.png';
 
 export default class MapScreen extends React.Component {
 
@@ -28,6 +29,7 @@ export default class MapScreen extends React.Component {
         this.state = {
         longitude: 0,
         latitude: 0,
+        marker: null,
         dataSource: dataSource,
         selecteditem: null,
         snackbarVisible: false,
@@ -40,7 +42,9 @@ export default class MapScreen extends React.Component {
     }
     
     goToDetailSpot = () => {
-        this.props.navigation.push('detailSpot')
+    //    this.setState({marker: this.state.dataSource});
+    //   console.log(this.state.marker);
+        this.props.navigation.navigate('detailSpot', {data: this.state.datasource})
     }
     //Sortie des données de la bdd
     listenForTasks(tasksRef) {
@@ -118,11 +122,12 @@ export default class MapScreen extends React.Component {
             {this.state.dataSource.map(marker => (
                 <MapView.Marker
                     key={marker.key}
+                    image={skate88}
                     coordinate={{longitude: marker.location.longitude, latitude: marker.location.latitude}}
                 >
                     <Callout onPress={this.goToDetailSpot}>
                         <Text> Spot Name : {marker.name}</Text>
-                        <Text style={styles.item} >Double tap to see more !</Text>
+                        <Text style={styles.item}>Double tap to see more !</Text>
                     </Callout>
                 </MapView.Marker>
             ))}

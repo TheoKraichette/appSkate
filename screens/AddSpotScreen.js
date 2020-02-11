@@ -224,31 +224,19 @@ saveItem() {
                   <TextInput
                   numberOfLines={2}
                     label="Location"
-                    style={{
-                    height: 50,
-                    borderColor: "gray",
-                    borderWidth: 1                
-                    }}
+                    style={styles.input}
                     onChangeText={location => this.setState({ userLocation: location })}
                     value={this.state.userLocation}
                   />
                   <TextInput
                   label="Name"
-                  style={{
-                      height: 50,
-                      borderColor: "gray",
-                      borderWidth: 1               
-                  }}
+                  style={styles.input}
                   onChangeText={name => this.setState({ itemname: name })}
                   value={this.state.itemname}
                   />    
                   <TextInput
                     label="Resume"
-                    style={{
-                        height: 50,
-                        borderColor: "gray",
-                        borderWidth: 1               
-                    }}
+                    style={styles.input}
                     onChangeText={resume => this.setState({ itemResume: resume })}
                     value={this.state.itemResume}
                   />     
@@ -259,13 +247,13 @@ saveItem() {
                   style={{backgroundColor:'#101010', marginTop: 5}}
                   onPress={() => this.saveItem()}
                   >
-                  {this.state.selecteditem === null ? "add" : "update"}
+                    <Text style={{ color: "#FFF", fontWeight: "500", fontFamily: 'JackArmstrongBold' }}>Add Spot</Text>
                   </Button>                  
                     <View style={{height: 10}}></View>
                   <Button
                     onPress={this.goBack}
                     style={{backgroundColor:'#101010'}}>
-                      <Text style={{color: 'white'}}>GoBack</Text>
+                      <Text style={{ color: "#FFF", fontWeight: "500", fontFamily: 'JackArmstrongBold' }}>GoBack</Text>
                   </Button>
                 </View>      
             </View>   
@@ -282,6 +270,16 @@ const stylesMap = StyleSheet.create({
   },
   map: {
       height: '40%',
-  }
+  },
+  inputTitle: {
+    color: "#101010",
+    fontSize: 10,
+    textTransform: "uppercase"
+},
+input: {
+    borderBottomColor: 'black', 
+    borderBottomWidth: 1,
+    height: 20
+},
 
 });

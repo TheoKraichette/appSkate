@@ -18,23 +18,33 @@ export default class DetailSpotScreen extends React.Component {
     static navigationOptions = {
         header: null
     }
+    
+    componentDidMount(){
+      const data = this.props.navigation.getParam(data, 'some default value');
+      this.setState({data});
+    }
+
+    goBack = () => {
+      this.props.navigation.goBack();
+    }
 
     render() {
+      const { navigation } = this.props.navigation;
+
         return (            
         <View style={styles.container}>
             <HeaderMap/>          
             <LinearGradient colors={['#181818', '#161616', '#141414', '#121212', '#101010']} style={styles.linearGradient}>
             <View style={styleWel.welcome}>
+        <Text style={{color: 'FFF'}}>    {/*{this.state.data}*/}</Text>
             </View>            
             <LastSpot/>
-            
-            </LinearGradient>        
+            </LinearGradient>
             <Button
             onPress={this.goBack}
             style={{backgroundColor:'#101010'}}>
+              <Text style={{ color: "#FFF", fontWeight: "500", fontFamily: 'JackArmstrongBold' }}>GoBack</Text>
             </Button>
-
-    
         </View>
         );
     }

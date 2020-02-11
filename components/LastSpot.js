@@ -49,7 +49,6 @@ listenForTasks(tasksRef) {
     this.setState({
         dataSource: tasks
     });
-    console.log(this.state.dataSource)
     });
 }
 
